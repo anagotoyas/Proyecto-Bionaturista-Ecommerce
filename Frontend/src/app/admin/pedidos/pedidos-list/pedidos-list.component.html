@@ -1,0 +1,90 @@
+<div class="container-fluid page" style="margin-top: 20px;">
+    <div class="page__box " >
+        <div>
+          <h2 style="font-family: Montserrat; font-size: 1.5rem;">Total de <b>pedidos</b>:  {{cantidadPedidos}}</h2>
+        </div>
+        <span class="fill-space"></span>
+       
+      </div>
+    <div class="page__content position-relative">
+                  
+      <div class="container2">
+  
+       <div class="table-container">
+        <div class="example-header">
+          <!-- <mat-form-field>
+            <input
+              matInput
+              (keyup)="applyFilter($any($event.target).value)"
+              placeholder="&nbsp;&nbsp;&nbsp;Buscar pedido"
+            />
+          </mat-form-field> -->
+        </div>
+          <table 
+            mat-table
+            [dataSource]="dataSource"
+            
+            matSort
+            class="mat-elevation-z8"
+            class="w-100"
+          >
+          <div class="table-row" >
+            <ng-container matColumnDef="pedido" >
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>N° Pedido</th>
+              <td mat-cell *matCellDef="let element" >{{ element.idPedido }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="cliente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+              <td mat-cell *matCellDef="let element">{{ element.usuario.nombreUsuario }}</td>
+            </ng-container>
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Compra</th>
+              <td mat-cell *matCellDef="let element">{{ element.fechaPedido }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;">Estado</th>
+              <td mat-cell  *matCellDef="let element " style="text-align: center; ">{{ element.estadoPedido.nombreEstado }}
+              
+              </td>
+            </ng-container>
+      
+            
+       
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;">Acciones</th>
+              <td mat-cell *matCellDef="let element" style="text-align: center; ">
+                <button
+                  id="verProducto"
+                  (click)="verPedido(element.idPedido)"
+                >
+                <mat-icon >visibility</mat-icon>
+                </button>
+                <button
+                  id="verPedido"
+               
+                >
+                <mat-icon>edit</mat-icon>
+                </button>
+                <!-- <button
+                  id="eliminarProducto"
+                  (click)="eliminarProducto(element.idProducto)"
+                >
+                <mat-icon>delete_outline</mat-icon>
+                </button> -->
+              </td>
+            </ng-container>
+          </div>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>  
+    </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
