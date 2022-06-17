@@ -40,7 +40,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   mover(idProducto:number){
-    window.location.replace(`user/${idProducto}/view`);
+    window.location.replace(`${idProducto}/view`);
   }
 
 }

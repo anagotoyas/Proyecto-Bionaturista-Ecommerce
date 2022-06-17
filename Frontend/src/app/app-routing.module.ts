@@ -5,12 +5,12 @@ import { RegistrarUsuarioComponent } from './registrar/registrar-usuario/registr
 
 const routes: Routes = [
   {
-    path:'user',
+    path:'',
     loadChildren: () =>
     import('./user/user.module').then((m) => m.UserModule)
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
 

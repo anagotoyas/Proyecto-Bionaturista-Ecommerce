@@ -24,5 +24,6 @@ export class ProductService {
   buscarProducto(nombreP: String){
     return this.http.get<Product[]>(`${this.apiBase}/productos/buscarPorNombre?nombreProducto=${nombreP}`);
   }
+  
    
 }

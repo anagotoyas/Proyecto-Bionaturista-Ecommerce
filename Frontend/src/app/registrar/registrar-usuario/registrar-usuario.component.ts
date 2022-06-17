@@ -27,7 +27,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       (res:any)=>{
         if(res['message']=='success'){
           const {idUsuario} = res['body']
-          this.router.navigate(['']);
+          this.router.navigate(['../login']);
           console.log(res)
           this.msg=""
           sessionStorage.setItem('idUsuario', idUsuario)

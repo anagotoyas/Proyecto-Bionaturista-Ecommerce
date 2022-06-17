@@ -16,7 +16,11 @@ export class HeaderComponent implements OnInit {
   }
 
   signOut(){
-    this.router.navigate([``]);
+    const ok = confirm('¿Estás seguro de cerrar sesión?');
+    if(ok){
+      sessionStorage.clear();
+      window.location.replace(`../`)
+    }
   }
 
   toggleSidebar() {

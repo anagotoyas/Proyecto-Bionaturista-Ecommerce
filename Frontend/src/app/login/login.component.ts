@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
           console.log(idUsuario);
           
           if(idRol==2){
-            window.location.replace("../user");
+            window.location.replace("../");
             //this.router.navigate(['/']);
             sessionStorage.setItem('idUsuario',idUsuario)
           }

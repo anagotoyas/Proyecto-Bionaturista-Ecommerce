@@ -16,7 +16,7 @@
 
 <mat-toolbar>
      
-  <button mat-button class="ms"><span routerLink="../user"><img class="logo" src="../../../assets/LogoHorizontalVerde.png" alt="Bionaturista"></span></button>
+  <button mat-button class="ms"><span routerLink="../"><img class="logo" src="../../../assets/LogoHorizontalVerde.png" alt="Bionaturista"></span></button>
   
   <form>
     <span class="spacer">
@@ -43,11 +43,17 @@
   </button>
 
   <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon>account_circle</mat-icon>  {{this.nombre}}
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="../">
+    <button mat-menu-item routerLink="../login">
+      <mat-icon>how_to_reg</mat-icon> Iniciar sesión
+    </button>
+    <button mat-menu-item routerLink="../register">
+      <mat-icon> contacts</mat-icon> Crear Cuenta
+    </button>
+    <button mat-menu-item (click)="cerrarSesion()">
       <mat-icon>logout</mat-icon> Cerrar sesión
     </button>
   </mat-menu>

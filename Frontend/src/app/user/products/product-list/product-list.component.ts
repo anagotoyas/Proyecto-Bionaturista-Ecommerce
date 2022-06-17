@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
   }
 
   mover(idProducto:number){
-    window.location.replace(`user/${idProducto}/view`);
+    window.location.replace(`${idProducto}/view`);
   }
   
   

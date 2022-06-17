@@ -20,4 +20,7 @@ export class UsuarioService {
       
       return this.http.post(this.apiBase+'/usuarios', usuario);
     }
+    obtenerUsuarioPorID(idUsuario:number){
+      return this.http.get<Usuario[]>(`${this.apiBase}/usuarios/${idUsuario}`);
+    }
 }
