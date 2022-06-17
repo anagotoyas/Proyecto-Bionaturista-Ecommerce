@@ -15,6 +15,8 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatNativeDateModule} from "@angular/material/core";
+import { ProductSearchComponent } from './products/product-search/product-search.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     ProductViewComponent,
     LayoutComponent,
     CartViewComponent,
-    ProcesoCompraComponent
+    ProcesoCompraComponent,
+    ProductSearchComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ]
 })
 export class UserModule { }

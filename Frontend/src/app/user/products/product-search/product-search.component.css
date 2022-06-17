@@ -1,0 +1,63 @@
+*{
+    font-family: Montserrat;
+}
+
+.container{
+    margin-top:25px;
+}
+
+.example-card {
+    width: 12rem;
+    height: auto;
+    border-radius:10px;
+     
+}
+
+.prod{
+    width:150px;
+}
+
+.mat-card {
+    display: inline-block;
+    margin: 2rem;
+    cursor: pointer;
+    
+    }
+
+.nombreProd {
+    color: #4A72B2;
+    font-size: 15px;
+
+}
+    
+.cajita{
+    padding: 0 5rem;
+}
+
+.precioProd {
+    color: #64813F;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+.breadcrumb{
+    padding: 2rem 0;
+    align-items: center;
+}
+.nav-breadcrumb{
+    color: #CE796B;
+   font-size:25px;
+}
+
+.breadcrumb-item{  
+    font-size:1.5rem;
+}
+
+.danger{
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+

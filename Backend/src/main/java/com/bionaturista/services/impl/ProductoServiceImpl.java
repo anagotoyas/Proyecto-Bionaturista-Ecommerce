@@ -24,6 +24,11 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    public void eliminarProducto(Integer idProducto) {
+        productoRepository.deleteById(idProducto);
+    }
+
+    @Override
     public List<Producto> listarProducto() {
 
         return productoRepository.findAll();
@@ -39,5 +44,9 @@ public class ProductoServiceImpl implements ProductoService {
         return productoRepository.contarProductos();
     }
 
+    @Override
+    public List<Producto> buscarPorNombre(String nombreP) {
+        return productoRepository.buscarPorNombre(nombreP);
+    }
 }
 

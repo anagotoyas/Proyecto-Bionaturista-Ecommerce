@@ -33,6 +33,7 @@ import { CrearCompuestoComponent } from './admin/crear-compuesto/crear-compuesto
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

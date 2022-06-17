@@ -9,10 +9,9 @@ import java.util.List;
 public interface ProductoService {
 
     Producto crearProducto(Producto producto);
+    void eliminarProducto(Integer idProducto);
     List<Producto> listarProducto();
     Producto obtenerProductoPorIdProducto(Integer idProducto);
-
     Long countProductos();
-    interface RolService {
-    }
+    List<Producto> buscarPorNombre(String nombreP);
 }

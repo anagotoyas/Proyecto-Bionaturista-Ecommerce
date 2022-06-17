@@ -10,12 +10,6 @@ body{
     height: 110px;
 }
 
-.pepito{
-    box-sizing: border-box;
-    border: 100px;
-    color: #ffffff;
-    background-color: #DAB692
-}
 
 .form-outline{
     border-radius: 10px;
@@ -29,6 +23,9 @@ body{
     
 }
 
+.searchTerm input[type="text"]{
+    padding-left: 5rem;
+}
 
 .searchTerm {
     color: #878585;
@@ -40,17 +37,10 @@ body{
     
   }
 
+p{
+    color: #383c52;
+}
 
-
-  .searchTerm:focus {
-    color: #878585;
-    font-family: 'Montserrat', sans-serif;
-    font-style: oblique;
-    font-size: 15px;
-  }
-  p{
-      color: #383c52;
-  }
 .botonB{
     margin-right: 100px;
     background-color: #DAB692;
@@ -75,7 +65,7 @@ body{
     float: left;
     }
     input[type=text] {
-    padding: 6px;
+    padding: 3px 2rem;
     padding-right:400px;
     margin-left:50px;
     margin-top: 8px;

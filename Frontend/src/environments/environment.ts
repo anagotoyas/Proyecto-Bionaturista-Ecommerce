@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'http://localhost:8092/bionaturista'
+  apiBase: 'http://localhost:8090/bionaturista'
 };
 
 /*

@@ -1,9 +1,9 @@
 package com.bionaturista.controller;
 
-import com.bionaturista.model.Categoria;
 import com.bionaturista.model.Producto;
 import com.bionaturista.services.ProductoService;
 import com.bionaturista.utils.WrapperResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +25,11 @@ public class ProductoController {
         Producto productoNew= productoService.crearProducto(producto);
         return new WrapperResponse<>(true, "success", productoNew).createResponse();
     }
+    @DeleteMapping("/{idProducto}")
+    public ResponseEntity<WrapperResponse<Void>> eliminarProducto(@PathVariable("idProducto") Integer idProducto){
+        productoService.eliminarProducto(idProducto);
+        return new WrapperResponse<Void>(true, "success", null).createResponse(HttpStatus.NO_CONTENT);
+    }
 
     @GetMapping
     public ResponseEntity<WrapperResponse<List<Producto>>> listarProducto(){
@@ -42,5 +47,12 @@ public class ProductoController {
         Long producto = productoService.countProductos();
         return new WrapperResponse<>(true, "success", producto).createResponse();
     }
+
+    @GetMapping("/buscarPorNombre")
+    public ResponseEntity<WrapperResponse<List<Producto>>> buscarPorNombre(String nombreProducto){
+        List<Producto> productoL=productoService.buscarPorNombre(nombreProducto);
+        return new WrapperResponse<>(true, "success", productoL).createResponse();
+    }
+
 }
 

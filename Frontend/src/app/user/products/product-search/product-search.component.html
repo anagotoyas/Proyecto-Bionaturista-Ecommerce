@@ -1,0 +1,28 @@
+<section class="cajita">
+
+  <div class="breadcrumb">
+    <mat-icon class="nav-breadcrumb triangle">play_arrow</mat-icon>
+    <li class="breadcrumb-item" ><strong> Resultado de Búsquedas de: </strong>"{{producto}}"</li>
+  </div>
+
+  <p class="danger">{{msg}}</p>
+
+  <mat-card class="example-card cardcita" *ngFor="let element of dataSource" (click)="mover(element.idProducto)">
+      <mat-card-header>
+      </mat-card-header>
+      
+      <mat-card-content style="text-align: center; margin-top: 25px;">
+        <img [src]="element.imagenP" class="prod">
+        <p class="nombreProd">
+          {{element.nombreP}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions style="text-align: center;" class="cardcita">
+        <p class="precioProd">
+          S/ {{element.precioP.toFixed(2)}}
+        </p>
+        <!-- <button mat-button routerLink="/user/compras/crear-compra/{{element.idPaquete}}" class="boton_paquete">s/. {{element.precioPaquete}}.00</button> -->
+      </mat-card-actions>
+  </mat-card>
+
+  </section>

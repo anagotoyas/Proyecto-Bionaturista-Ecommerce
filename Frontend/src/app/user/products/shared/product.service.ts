@@ -18,7 +18,11 @@ export class ProductService {
   }
   
   agregarAlCarrito(idUsuario: number, idProducto: number){
-    return this.http.put(`${this.apiBase}/usuarios/${idUsuario}/carrito/${idProducto}`, null)
+    return this.http.put(`${this.apiBase}/usuarios/${idUsuario}/carrito/${idProducto}`, null);
+  }
+
+  buscarProducto(nombreP: String){
+    return this.http.get<Product[]>(`${this.apiBase}/productos/buscarPorNombre?nombreProducto=${nombreP}`);
   }
    
 }
