@@ -1,10 +1,7 @@
 package com.bionaturista.validators;
 
 import com.bionaturista.exception.IncorrectResourceRequestException;
-import com.bionaturista.model.Pedido;
-import com.bionaturista.model.Usuario;
-import com.bionaturista.repositories.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bionaturista.domain.entities.Pedido;
 
 public class PedidoValidator {
 

@@ -1,7 +1,7 @@
 package com.bionaturista.validators;
 
 import com.bionaturista.exception.IncorrectResourceRequestException;
-import com.bionaturista.model.Usuario;
+import com.bionaturista.domain.entities.Usuario;
 
 public class UsuarioValidator {
 

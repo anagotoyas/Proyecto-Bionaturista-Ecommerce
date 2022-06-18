@@ -1,7 +1,7 @@
 package com.bionaturista.validators;
 
 import com.bionaturista.exception.IncorrectResourceRequestException;
-import com.bionaturista.model.Compuesto;
+import com.bionaturista.domain.entities.Compuesto;
 
 public class CompuestoValidator {
 

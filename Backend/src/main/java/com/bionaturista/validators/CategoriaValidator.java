@@ -1,7 +1,7 @@
 package com.bionaturista.validators;
 
 import com.bionaturista.exception.IncorrectResourceRequestException;
-import com.bionaturista.model.Categoria;
+import com.bionaturista.domain.entities.Categoria;
 
 public class CategoriaValidator {
 

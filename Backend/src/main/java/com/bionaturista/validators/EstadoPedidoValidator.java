@@ -1,7 +1,7 @@
 package com.bionaturista.validators;
 
 import com.bionaturista.exception.IncorrectResourceRequestException;
-import com.bionaturista.model.EstadoPedido;
+import com.bionaturista.domain.entities.EstadoPedido;
 
 public class EstadoPedidoValidator {
     public static void validate(EstadoPedido estadoPedido){
