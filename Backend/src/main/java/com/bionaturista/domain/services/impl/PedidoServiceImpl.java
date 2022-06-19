@@ -103,6 +103,12 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
+    public List<Pedido> listarPedidosPorIdUsuario(Usuario usuario) {
+        List<Pedido> usuarioId = pedidoRepository.listarPedidosPorIdUsuario(usuario);
+        return usuarioId;
+    }
+
+    @Override
     public void cancelarPedido(Integer idPedido) {
         Pedido pedido=pedidoRepository.findById(idPedido).orElse(new Pedido());
         EstadoPedido enviado=estadoPedidoRepository.pedidoEnviado();

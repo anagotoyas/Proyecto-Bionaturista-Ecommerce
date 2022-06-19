@@ -71,4 +71,9 @@ public class PedidoController {
         return pedido.getProductosPedido();
 
     }
+    @GetMapping("/listarPorIdUsuario")
+    public ResponseEntity<WrapperResponse<List<Pedido>>> listarPedidosPorIdUsuario(@RequestParam Usuario usuario){
+        List<Pedido> usuarioid=pedidoService.listarPedidosPorIdUsuario(usuario);
+        return new WrapperResponse<>(true, "success", usuarioid).createResponse();
+    }
 }

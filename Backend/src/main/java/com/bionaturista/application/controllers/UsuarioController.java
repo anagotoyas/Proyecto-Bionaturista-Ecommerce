@@ -1,10 +1,13 @@
 package com.bionaturista.application.controllers;
 
+import com.bionaturista.domain.entities.Pedido;
 import com.bionaturista.domain.entities.Producto;
 import com.bionaturista.domain.entities.Usuario;
 import com.bionaturista.domain.repositories.ProductoRepository;
 import com.bionaturista.domain.repositories.UsuarioRepository;
+import com.bionaturista.domain.repositories.PedidoRepository;
 import com.bionaturista.domain.services.UsuarioService;
+import com.bionaturista.domain.services.PedidoService;
 import com.bionaturista.utils.WrapperResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +22,16 @@ import java.util.Set;
 public class UsuarioController {
 
     private  final UsuarioService usuarioService;
+    private PedidoService pedidoService;
 
     @Autowired
     private ProductoRepository productoRepository;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
@@ -83,6 +90,9 @@ public class UsuarioController {
         return usuario.getCarritoCompras();
 
     }
+
+
+
 
 }
 
