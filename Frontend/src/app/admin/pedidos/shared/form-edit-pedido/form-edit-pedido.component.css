@@ -1,0 +1,40 @@
+.volver{
+   
+    background-color:#495867;
+    color:#fff;
+}
+.volver:hover{
+    color:#fff;
+    background-color:rgb(106, 106, 106);
+}
+
+p{
+    align-items: right;
+}
+
+.invisible {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
+.resumen{
+    padding: 0 13px ;
+    margin-bottom:2rem;
+}
+.resumen-title{
+    color: #868686;
+    font-size:25px;
+    font-weight:30px;
+    margin-bottom:2rem;
+}
+table{
+    margin-top:-1rem;
+}
+th{
+    font-size:16px;
+    font-weight:bold;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}

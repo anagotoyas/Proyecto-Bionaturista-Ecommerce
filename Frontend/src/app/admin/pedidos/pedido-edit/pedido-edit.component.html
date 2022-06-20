@@ -1,0 +1,58 @@
+<body>
+    
+    <div class="container-fluid page" style="margin-top: 20px;" >
+        <header>
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" >
+                            <mat-icon class="nav-breadcrumb triangle">play_arrow</mat-icon><li class="breadcrumb-item" ><a class=bread href="../admin/pedidos">Pedido<b> Nro {{idPedido}}</b></a></li>
+                            
+                        </ol>
+                    </nav>
+
+                </div>
+                <div class="col">
+                    <a type="button" href="../admin/pedidos"class="btn  volver" value="Volver al listado" style="float: right;">Volver al listado</a>
+
+                </div>
+            </div>
+        </header>
+        <div class="resumen">
+        <div class="row">
+            <h2 class="resumen-title">Resumen</h2>
+        </div>
+        <div class="row" *ngIf="dataSource">
+            <div class="col-md-2">
+                <p align="right"><b>Usuario: </b> </p>
+                <p align="right"><b>Fecha de Compra: </b></p>
+                <p align="right"><b>Estado: </b></p>
+              
+            </div>
+            <div class="col">
+                <p>{{nombre}}</p>
+                <p>{{dataSource.fechaPedido}}</p>
+                <p>{{dataSource.estadoPedido.nombreEstado}}</p>
+
+            </div>
+            
+            <div class="col-md-2">
+                <p align="right"><b>Subtotal: </b></p>
+                <p align="right"><b>Total de Delivery: </b></p>
+                <p align="right"><b>Total pagado: </b></p>
+            </div>
+            <div class="col">
+                <p>{{dataSource.subtotal.toFixed(2)}}</p>
+                <p>{{dataSource.costoEnvio.toFixed(2)}}</p>
+                <p>{{dataSource.montoPago.toFixed(2)}}</p>
+            </div>
+            
+        
+                <app-form-edit-pedido (onSubmit)="editPedido($event)"></app-form-edit-pedido>
+                     
+            </div>
+       
+        </div>
+    </div>
+
+</body>

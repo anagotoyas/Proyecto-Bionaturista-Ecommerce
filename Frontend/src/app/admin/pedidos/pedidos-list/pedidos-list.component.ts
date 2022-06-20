@@ -43,6 +43,8 @@ export class PedidosListComponent implements OnInit {
     window.location.replace(`admin/pedidos/${idPedido}`);
   }
 
-  
+  editarPedido(idPedido:any){
+    window.location.replace(`admin/pedidos/${idPedido}/edit`);
+  }
 
 }

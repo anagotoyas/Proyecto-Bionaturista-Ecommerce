@@ -23,4 +23,9 @@ export class PedidosService {
   verProductos(idPedido:any){
     return this.http.get<Producto[]>(`${this.apiBase}/pedidos/${idPedido}/productos`)
   }
+
+  editarPedido(pedido: Pedido){
+    return this.http.put(`${this.apiBase}/pedidos`, pedido)
+  }
+
 }

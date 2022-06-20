@@ -47,15 +47,21 @@
   </button>
 
   <mat-menu #menu="matMenu">
+    <div *ngIf="isShown">
     <button mat-menu-item routerLink="../login">
       <mat-icon>how_to_reg</mat-icon> Iniciar sesión
     </button>
+    </div>
+    <div *ngIf="isShown">
     <button mat-menu-item routerLink="../register">
       <mat-icon> contacts</mat-icon> Crear Cuenta
     </button>
+  </div>
+    <div *ngIf="isShown2">
     <button mat-menu-item (click)="cerrarSesion()">
       <mat-icon>logout</mat-icon> Cerrar sesión
     </button>
+  </div>
   </mat-menu>
 </mat-toolbar>
   

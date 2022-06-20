@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.component';
 import { PedidosListComponent } from './pedidos/pedidos-list/pedidos-list.component';
 import { PedidoViewComponent } from './pedidos/pedido-view/pedido-view.component';
+import { FormEditPedidoComponent } from './pedidos/shared/form-edit-pedido/form-edit-pedido.component';
+import { PedidoEditComponent } from './pedidos/pedido-edit/pedido-edit.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { PedidoViewComponent } from './pedidos/pedido-view/pedido-view.component
     FormProductComponent,
     CrearCategoriaComponent,
     PedidosListComponent,
-    PedidoViewComponent
+    PedidoViewComponent,
+    FormEditPedidoComponent,
+    PedidoEditComponent
   ],
   imports: [
     CommonModule,

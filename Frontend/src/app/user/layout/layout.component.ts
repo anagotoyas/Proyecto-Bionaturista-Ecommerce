@@ -8,14 +8,30 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
+
 export class LayoutComponent implements OnInit {
-  nombre:any
+
+  nombre:any;
+  isShown: boolean = false;
+  isShown2: boolean = false;
   dataSource:Usuario
   constructor(
     private router: Router,
     private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+
+    if(sessionStorage.getItem('key') == null){
+      console.log(sessionStorage.getItem('key'))
+      this.isShown =! this.isShown;
+      console.log(this.isShown);
+    }
+    
+    else {
+      
+      this.isShown2 =! this.isShown2;
+    }
+
     this.verUsuario()
   }
   irCarrito(){

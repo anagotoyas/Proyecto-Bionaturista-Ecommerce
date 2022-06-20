@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PedidoEditComponent } from '../admin/pedidos/pedido-edit/pedido-edit.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { HeaderComponent } from './header/header.component';
 import { ListProductsComponent } from './list-products/list-products.component';
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'pedidos/:idPedido',
         component: PedidoViewComponent
+      },
+      {
+        path: 'pedidos/:idPedido/edit',
+        component: PedidoEditComponent
       },
     ]
   }
