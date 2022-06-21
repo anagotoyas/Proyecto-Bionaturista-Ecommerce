@@ -34,13 +34,15 @@ export class RegistrarUsuarioComponent implements OnInit {
         }
         else{
           this.msg=res['message']
-          
+
           console.log(this.msg);
-          console.log(res);        
+          console.log(res);
         }
       },
       (error:any)=>{
         this.msg=""
+        console.log(error)
+
       }
     )
   }

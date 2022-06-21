@@ -9,11 +9,12 @@ import { PedidosListComponent } from './pedidos/pedidos-list/pedidos-list.compon
 import { NewProductComponent } from './products/new-product/new-product.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { VentasComponent } from './ventas/ventas.component';
+import {EditProductComponent} from "./products/edit-product/edit-product.component";
 
 const routes: Routes = [
 
   {
-    
+
     path:'',
     component: AdminHomeComponent,
     children: [
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'productos/crear',
         component: NewProductComponent
+      },
+      {
+        path: 'productos/:id',
+        component: EditProductComponent
       },
       {
         path: 'pedidos',

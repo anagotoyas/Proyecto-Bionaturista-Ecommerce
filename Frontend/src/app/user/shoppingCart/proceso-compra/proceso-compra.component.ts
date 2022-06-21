@@ -101,8 +101,8 @@ export class ProcesoCompraComponent implements OnInit {
     private shoppingCartService: ShoppingCartService
     ) { }
   ngOnInit(): void {
-    
-   
+
+
   }
   siguiente(){
     this.progreso=100;
@@ -153,31 +153,29 @@ export class ProcesoCompraComponent implements OnInit {
       return true
     }
     return this.correo.invalid;  }
-
-
   realizarPago(){
-    
+
     var sas={
       usuario: {
         idUsuario: this.pedido.usuario=Number(sessionStorage.getItem('key')),
       },
-       
-        
-    
-        metodoPago: 
+
+
+
+        metodoPago:
           this.pedido.metodoPago="Metodo de Pago",
       costoEnvio: this.pedido.costoEnvio=7,
       estadoPedido:{
         idEstado: this.pedido.estadoPedido=1
       },
-     
-       
-      
-        
+
+
+
+
     }
-   
-    
-    
+
+
+
     this.shoppingCartService.crearPedido(sas).subscribe(() => {
       this.router.navigate(['/user'])
       Swal.fire({
@@ -185,13 +183,11 @@ export class ProcesoCompraComponent implements OnInit {
       title: 'El pago se ha realizado con éxito',
       showConfirmButton: false,
       timer: 1500
-     }) 
+     })
 
     })
 
      }
-
-
 }
 
 

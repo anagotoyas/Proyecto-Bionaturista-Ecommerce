@@ -28,6 +28,7 @@ import { PedidosListComponent } from './pedidos/pedidos-list/pedidos-list.compon
 import { PedidoViewComponent } from './pedidos/pedido-view/pedido-view.component';
 import { FormEditPedidoComponent } from './pedidos/shared/form-edit-pedido/form-edit-pedido.component';
 import { PedidoEditComponent } from './pedidos/pedido-edit/pedido-edit.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { PedidoEditComponent } from './pedidos/pedido-edit/pedido-edit.component
     PedidosListComponent,
     PedidoViewComponent,
     FormEditPedidoComponent,
-    PedidoEditComponent
+    PedidoEditComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,
