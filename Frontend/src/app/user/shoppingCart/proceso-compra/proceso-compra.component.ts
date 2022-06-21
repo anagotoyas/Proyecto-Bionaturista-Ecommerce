@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import { ProductService } from '../../products/shared/product.service';
 import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { Pedido } from '../shared/pedido.model';
+import {InfoEnvioModel} from "../shared/infoEnvio.model";
 
 @Component({
   selector: 'app-proceso-compra',
@@ -14,6 +15,15 @@ import { Pedido } from '../shared/pedido.model';
 export class ProcesoCompraComponent implements OnInit {
 
   @Input() pedido: Pedido = new Pedido();
+  infoEnvio: InfoEnvioModel = new InfoEnvioModel()
+
+  agregarInfoEnvio(){
+    this.infoEnvio.direccionEnvio = this.controlDireccion.value
+    this.infoEnvio.nombreContactoEnvio = this.controlNombreContacto.value
+    this.infoEnvio.apartamentoEnvio = this.controlApartamento.value
+    this.infoEnvio.numTelefonoEnvio = this.controlNumTelefono.value
+    this.infoEnvio.codigoPostal = this.controlCodigoPostal.value
+  }
 
   controlNumTelefono= new FormControl('',[
     Validators.required,
@@ -154,7 +164,7 @@ export class ProcesoCompraComponent implements OnInit {
     }
     return this.correo.invalid;  }
   realizarPago(){
-
+    this.agregarInfoEnvio()
     var sas={
       usuario: {
         idUsuario: this.pedido.usuario=Number(sessionStorage.getItem('key')),
@@ -168,10 +178,7 @@ export class ProcesoCompraComponent implements OnInit {
       estadoPedido:{
         idEstado: this.pedido.estadoPedido=1
       },
-
-
-
-
+      infoEnvio: this.infoEnvio
     }
 
 

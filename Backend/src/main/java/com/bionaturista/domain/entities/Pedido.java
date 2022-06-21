@@ -2,6 +2,9 @@ package com.bionaturista.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +15,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "pedidos")
+@Getter
+@Setter
 public class Pedido {
 
     @Id
@@ -21,6 +26,10 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "FK_id_usuario"))
     private Usuario usuario;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Id_info_envio", nullable = false, foreignKey = @ForeignKey(name = "FK_id_info_envio"))
+    private InfoEnvio infoEnvio;
 
     @NotNull
     @Column(name = "monto_pago",nullable = false)
@@ -64,83 +73,5 @@ public class Pedido {
     Set<Producto> productosPedido = new LinkedHashSet<>();
 
 
-    public Integer getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(Integer idPedido) {
-        this.idPedido = idPedido;
-    }
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public float getMontoPago() {
-        return montoPago;
-    }
-
-    public void setMontoPago(float montoPago) {
-        this.montoPago = montoPago;
-    }
-
-    public Date getFechaPedido() {
-        return fechaPedido;
-    }
-
-    public void setFechaPedido(Date fechaPedido) {
-        this.fechaPedido = fechaPedido;
-    }
-
-    public Date getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public void setFechaEntrega(Date fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
-    }
-
-    public String getMetodoPago() {
-        return metodoPago;
-    }
-
-    public void setMetodoPago(String metodoPago) {
-        this.metodoPago = metodoPago;
-    }
-
-    public EstadoPedido getEstadoPedido() {
-        return estadoPedido;
-    }
-
-    public void setEstadoPedido(EstadoPedido estadoPedido) {
-        this.estadoPedido = estadoPedido;
-    }
-
-    public float getCostoEnvio() {
-        return costoEnvio;
-    }
-
-    public void setCostoEnvio(float costoEnvio) {
-        this.costoEnvio = costoEnvio;
-    }
-
-    public float getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public Set<Producto> getProductosPedido() {
-        return productosPedido;
-    }
-
-    public void setProductosPedido(Set<Producto> productosPedido) {
-        this.productosPedido = productosPedido;
-    }
 }
 

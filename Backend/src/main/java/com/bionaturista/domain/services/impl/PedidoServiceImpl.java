@@ -1,13 +1,7 @@
 package com.bionaturista.domain.services.impl;
 
-import com.bionaturista.domain.entities.EstadoPedido;
-import com.bionaturista.domain.entities.Pedido;
-import com.bionaturista.domain.entities.Producto;
-import com.bionaturista.domain.entities.Usuario;
-import com.bionaturista.domain.repositories.EstadoPedidoRepository;
-import com.bionaturista.domain.repositories.PedidoRepository;
-import com.bionaturista.domain.repositories.ProductoRepository;
-import com.bionaturista.domain.repositories.UsuarioRepository;
+import com.bionaturista.domain.entities.*;
+import com.bionaturista.domain.repositories.*;
 import com.bionaturista.domain.services.PedidoService;
 import com.bionaturista.validators.PedidoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +13,8 @@ import java.util.Set;
 @Service
 public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository pedidoRepository;
+    @Autowired
+    private InfoEnvioRepository infoEnvioRepository;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -48,6 +44,14 @@ public class PedidoServiceImpl implements PedidoService {
         //Vasea el carrito y se lo guarda al usuario (actualiza *en esencia*) ☼☼☼
         Set<Producto> nuevoCarrito = null;
         usuarioFinal.setCarritoCompras(nuevoCarrito);
+
+        //Se debe agregar un metodo exits para verificar si la información de envio ya existe, pero me da pereza hacerlo
+        InfoEnvio iv = this.infoEnvioRepository.save(pedido.getInfoEnvio());
+        InfoEnvio info = this.infoEnvioRepository.findById(iv.getIdInfoEnvio()).orElse(new InfoEnvio());
+        pedido.setInfoEnvio(info);
+
+
+
         usuarioRepository.save(usuarioFinal);
         //Y guarda el pedido as it should :)
         return pedidoRepository.save(pedido);

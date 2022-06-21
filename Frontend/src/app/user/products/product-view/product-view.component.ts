@@ -19,19 +19,19 @@ export class ProductViewComponent implements OnInit {
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private productService: ProductService, 
+    private productService: ProductService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    
+
     this.getInfoProducto();
-    
+
   }
 
   getInfoProducto(){
     const params = this.activeRoute.snapshot.params;
-    
+
     this.productService.getProductoById(params['id']).subscribe((data:any) => {
     this.dataSource = data['body'];
     this.imagen=data['body'].imagenP;
@@ -42,7 +42,7 @@ export class ProductViewComponent implements OnInit {
 
 
    });
-    
+
 
   }
 
@@ -58,16 +58,16 @@ export class ProductViewComponent implements OnInit {
       const ok = confirm('¿Estás seguro de agregar este producto al carrito de compras?');
     if(ok){
       this.productService.agregarAlCarrito(Number(sessionStorage.getItem('key')),idProducto ).subscribe(()=>{
-       
+
       })
     }
     }
-   
-    
+
+
 
   }
 
-  
-  
+
+
 }
 

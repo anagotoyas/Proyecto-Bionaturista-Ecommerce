@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Producto } from '../../products/shared/product.model';
 import { Pedido } from '../../shared/pedidos.model';
 import { PedidosService } from '../../shared/pedidos.service';
+import {InfoEnvioModel} from "../../../user/shoppingCart/shared/infoEnvio.model";
 
 @Component({
   selector: 'app-pedido-view',
@@ -14,6 +15,7 @@ export class PedidoViewComponent implements OnInit {
   dataSource: Pedido;
   dataSource2: _MatTableDataSource<Producto>
   fechaEntrega:any;
+  infoEnvio: InfoEnvioModel;
   displayedColumns: string[] = [ 'id','producto','cantidad','precio'];
   constructor(
     private pedidosService: PedidosService,
@@ -22,10 +24,10 @@ export class PedidoViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.verPedido();
-    
+
   }
 
-  
+
 
   verPedido(){
     const params = this.activeRoute.snapshot.params;
@@ -33,11 +35,12 @@ export class PedidoViewComponent implements OnInit {
       this.dataSource = data['body'];
       console.log(data['body']);
       var date = data['body'].fechaPedido;
+      this.infoEnvio = data['body'].infoEnvio
       var datearray = date.split("/");
       var newdate = datearray[1] + '/' + datearray[0] + '/' + datearray[2];
       this.fechaEntrega=this.addDays(newdate);
       this.verProductos(this.dataSource.idPedido);
-      
+
 
     })
   }
@@ -57,6 +60,6 @@ export class PedidoViewComponent implements OnInit {
     })
   }
 
-  
+
 
 }
