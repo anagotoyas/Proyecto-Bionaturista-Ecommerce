@@ -20,7 +20,7 @@ import { CrearCompuestoComponent } from './admin/crear-compuesto/crear-compuesto
     AppComponent,
     LoginComponent,
     RegistrarUsuarioComponent,
-    FormRegistrarUsuarioComponent
+    FormRegistrarUsuarioComponent,
   ],
   imports: [
     BrowserModule,

@@ -49,6 +49,21 @@ export class LayoutComponent implements OnInit {
     
 
   }
+  irPedidos(){
+    if(sessionStorage.getItem('key')==null){
+      const ok = confirm('Debes iniciar sesión para poder ver tus pedidos');
+    if(ok){
+      
+      window.location.replace(`../login`)
+    }
+    }
+    else{
+      window.location.replace(`../pedidos/mispedidos`);
+    }
+   
+    
+
+  }
 
   buscarProducto(){
     var inputValue = (<HTMLInputElement>document.getElementById('nombreProducto')).value;

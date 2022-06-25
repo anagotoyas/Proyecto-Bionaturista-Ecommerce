@@ -17,6 +17,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatNativeDateModule} from "@angular/material/core";
 import { ProductSearchComponent } from './products/product-search/product-search.component';
 import { MatIconModule } from '@angular/material/icon';
+import { PedidoListComponent } from './pedidos/listar-pedidos/listar-pedidos.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     LayoutComponent,
     CartViewComponent,
     ProcesoCompraComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    PedidoListComponent,
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,7 @@ import { ProductSearchComponent } from './products/product-search/product-search
 import { ProductViewComponent } from './products/product-view/product-view.component';
 import { CartViewComponent } from './shoppingCart/cart-view/cart-view.component';
 import {ProcesoCompraComponent} from "./shoppingCart/proceso-compra/proceso-compra.component";
+import { PedidoListComponent } from './pedidos/listar-pedidos/listar-pedidos.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,18 @@ const routes: Routes = [
         component: ProductSearchComponent
       },
     ]
-  }
+  },
+  {
+    path: 'pedidos',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'mispedidos',
+        component: PedidoListComponent,
+      },
+      
+    ]
+  },
 
 ];
 
