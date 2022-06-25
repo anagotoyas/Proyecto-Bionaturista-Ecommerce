@@ -8,12 +8,12 @@
         
         <mat-card-content style="text-align: center; margin-top: 25px;">
           <img [src]="element.imagenP" class="prod">
-          <p class="nombreProd">
+          <p class="nombreProd" style="margin-top: 15px; font-weight:bold;">
             {{element.nombreP}}
           </p>
         </mat-card-content>
         <mat-card-actions style="text-align: center;" class="cardcita">
-          <p class="precioProd">
+          <p class="precioProd" style="margin-top:-20px">
             S/ {{element.precioP.toFixed(2)}}
           </p>
           <!-- <button mat-button routerLink="/user/compras/crear-compra/{{element.idPaquete}}" class="boton_paquete">s/. {{element.precioPaquete}}.00</button> -->

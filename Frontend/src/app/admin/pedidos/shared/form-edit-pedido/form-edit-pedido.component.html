@@ -15,30 +15,22 @@
                 <mat-hint align="end">{{nombreInput.value?.length || 0}}/100</mat-hint>
                
             </mat-form-field>
-        <mat-form-field appearance="outline" class="d-block" style="width: 50%;">
-            <mat-label>Metodo de pago</mat-label>
-            <input
-            matInput #nombreInput
-            type="text"
-            maxlength="100"
-            formControlName="metodoPago"
-            required [(ngModel)]="pedido.metodoPago"
-            />
-            <mat-hint align="end">{{nombreInput.value?.length || 0}}/100</mat-hint>
-           
-        </mat-form-field>
-    </div>
-    <div class="col-md-6">
-            <mat-form-field appearance="outline" style="width: 50%;">
-                <mat-label>Estado de pedido</mat-label>
-                <mat-select [(ngModel)]="pedido.estadoPedido" formControlName="estadoPedido" name="estadoPedido">
-
-                    <mat-option *ngFor="let estado of estados" [value]="estado">
-                        {{estado.nombreEstado}}
-                    </mat-option>
-                </mat-select>
+            <mat-form-field appearance="outline" class="invisible d-block" style="width: 50%;" >
+                <mat-label >InfoPedido</mat-label >
+                <input
+                [readonly]="true"
+                matInput #nombreInput
+                type="text"
+                maxlength="100"
+                formControlName="infoEnvio"
+                [(ngModel)]="pedido.infoEnvio"
+                
+                />
+               
             </mat-form-field>
-        </div>
+        
+    </div>
+    
         <div class="col-md-6">
             <mat-form-field appearance="outline" class="invisible d-block" style="width: 50%;">
                 <mat-label>Costo de Envio</mat-label>
@@ -88,10 +80,66 @@
                 formControlName="subtotal"
                 required [(ngModel)]="pedido.subtotal"
                 />
-               
             </mat-form-field>
         </div>
+        <div class="resumen">
+            <div class="row">
+              <h2 class="resumen-title">Información de envio</h2>
+            </div>
+            <div class="row" *ngIf="pedido">
+              <div class="col-md-2">
+                <p align="right"> <b>Nombre: </b> </p>
+                <p align="right"><b>Telefono: </b></p>
+                <p align="right"><b>Dirección: </b></p>
+    
+              </div>
+              <div class="col">
+                <p>{{infoEnvio.nombreContactoEnvio}}</p>
+                <p>{{infoEnvio.numTelefonoEnvio}}</p>
+                <p>{{infoEnvio.direccionEnvio}}</p>
+    
+              </div>
+    
+              <div class="col-md-2">
+                <p align="right"><b>Apartamento: </b></p>
+                <p align="right"><b>Código postal: </b></p>
+              </div>
+              <div class="col">
+                <p>{{infoEnvio.apartamentoEnvio}}</p>
+                <p>{{infoEnvio.codigoPostal}}</p>
+    
+              </div>
+    
+            </div>
+    
+          </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" style="width: 50%;">
+                <mat-label>Estado de pedido</mat-label>
+                <mat-select [(ngModel)]="pedido.estadoPedido" formControlName="estadoPedido" name="estadoPedido">
+
+                    <mat-option *ngFor="let estado of estados" [value]="estado">
+                        {{estado.nombreEstado}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+        <div class="col-md-6">
+        <mat-form-field appearance="outline" class="d-block" style="width: 50%;">
+            <mat-label>Metodo de pago</mat-label>
+            <input
+            matInput #nombreInput
+            type="text"
+            maxlength="100"
+            formControlName="metodoPago"
+            required [(ngModel)]="pedido.metodoPago"
+            />
+            <mat-hint align="end">{{nombreInput.value?.length || 0}}/100</mat-hint>
+           
+        </mat-form-field>
+        </div>
+        </div>
+        
         <br>
         <div class="items ">
             <div class="row ">

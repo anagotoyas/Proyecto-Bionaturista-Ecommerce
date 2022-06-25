@@ -7,6 +7,7 @@ import java.util.List;
 public interface ProductoService {
 
     Producto crearProducto(Producto producto);
+    Producto modificarProducto(Producto producto);
     void eliminarProducto(Integer idProducto);
     List<Producto> listarProducto();
     Producto obtenerProductoPorIdProducto(Integer idProducto);

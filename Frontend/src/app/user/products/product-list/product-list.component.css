@@ -2,7 +2,9 @@
 *{
     font-family: Montserrat;
 }
-
+.cajita{
+    padding: 0 5rem;
+}
 .container{
     margin-top:25px;
 }
@@ -21,7 +23,7 @@
 .mat-card {
     display: inline-block;
     margin: 2rem;
-    
+    cursor:pointer;
     }
 
 .nombreProd {

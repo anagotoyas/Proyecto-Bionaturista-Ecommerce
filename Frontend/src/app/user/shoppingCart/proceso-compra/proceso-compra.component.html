@@ -12,7 +12,7 @@
               <h4>Informaci&oacute;n de <b>Contacto</b></h4>
             </div>
             <div class="col-md-6" >
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>Nombre de Contacto</mat-label>
                 <input matInput type="text" [formControl]="controlNombreContacto" >
 
@@ -28,7 +28,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-6" >
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>N&uacute;mero de Tel&eacute;fono</mat-label>
                 <input matInput type="text" [formControl]="controlNumTelefono" >
                 <mat-error *ngIf="controlNumTelefono.hasError('pattern')">
@@ -51,7 +51,7 @@
               <h4>Informaci&oacute;n de <b>Env&iacute;o</b></h4>
             </div>
             <div class="col-md-12">
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>Direcci&oacute;n, apartado postal, etc.</mat-label>
                 <input matInput type="text" [formControl]="controlDireccion" >
                 <mat-error *ngIf="controlDireccion.hasError('maxlength')">
@@ -65,7 +65,7 @@
                 </mat-error>
               </mat-form-field>              </div>
             <div class="col-md-6" >
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>Apartamento, suite, unidad, etc</mat-label>
                 <input matInput type="text" [formControl]="controlApartamento" >
 
@@ -81,7 +81,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-6" >
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>C&oacute;digo postal</mat-label>
                 <input matInput type="text" [formControl]="controlCodigoPostal">
                 <mat-error *ngIf="controlCodigoPostal.hasError('pattern')">
@@ -104,7 +104,7 @@
               <h4>Fecha de <b>Entrega</b></h4>
             </div>
             <div class="col-md-6" >
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" [formControl]="date">
                 <mat-hint>MM/DD/YYYY</mat-hint>
@@ -113,7 +113,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-6" >
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [ngxTimepicker]="timePicker" [formControl]="hora">
                 <mat-hint>HH/MM</mat-hint>
@@ -143,7 +143,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label><mat-icon>payment</mat-icon>Número de tarjeta</mat-label>
                 <input matInput type="text" [formControl]="controlNumeroTarjeta" >
                 <mat-error *ngIf="controlNumeroTarjeta.hasError('pattern')">
@@ -163,7 +163,7 @@
           </div>
           <div class="row">
             <div class="col-md-6" >
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label><mat-icon>person</mat-icon>Nombre del propietario</mat-label>
                 <input matInput type="text" [formControl]="controlNombrePropietario" >
                 <mat-error *ngIf="controlNombrePropietario.hasError('maxlength')">
@@ -178,7 +178,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-6" >
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label><mat-icon>person</mat-icon>Apellido del propietario</mat-label>
                 <input matInput type="text" [formControl]="controlApellidoPropietario" >
                 <mat-error *ngIf="controlApellidoPropietario.hasError('maxlength')">
@@ -195,7 +195,7 @@
           <div class="row">
 
             <div class="col-md-12">
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label><mat-icon>alternate_email</mat-icon>Correo eletrónico</mat-label>
                 <input matInput type="text" [formControl]="correo" >
                 <mat-error *ngIf="correo.hasError('email')">
@@ -210,7 +210,7 @@
           </div>
           <div class="row">
             <div class="col-md-4" >
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label><mat-icon>date_range</mat-icon>Mes de caducidad</mat-label>
                 <mat-select [(ngModel)]="mesSeleccionado" name="food">
                   <mat-option *ngFor="let mes of meses" [value]="mes.value">
@@ -221,7 +221,7 @@
 
             </div>
             <div class="col-md-4" >
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label><mat-icon>date_range</mat-icon>Año de caducidad</mat-label>
                 <mat-select [(ngModel)]="agnoSeleccionado" name="food">
                   <mat-option *ngFor="let agno of agnos" [value]="agno.value">
@@ -232,7 +232,7 @@
 
             </div>
             <div class="col-md-4">
-              <mat-form-field class="example-form-field" appearance="fill">
+              <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label><mat-icon>payment</mat-icon>Código CVV</mat-label>
                 <input matInput type="text" [formControl]="controlCVV">
                 <mat-error *ngIf="controlCVV.hasError('pattern')">

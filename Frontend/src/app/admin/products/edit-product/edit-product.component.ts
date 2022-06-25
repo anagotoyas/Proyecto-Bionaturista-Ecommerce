@@ -26,6 +26,8 @@ export class EditProductComponent implements OnInit {
   compuestazo:any;
   compuestos: Compuesto[];
 
+  selectedCategoria: any;
+
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
@@ -41,6 +43,9 @@ export class EditProductComponent implements OnInit {
       (data:any)=>{
         this.product = data['body']
         console.log(data['body'])
+        this.selectedCategoria=this.product.categoria;
+        console.log(this.selectedCategoria);
+        
       }
     )
 
@@ -118,7 +123,7 @@ export class EditProductComponent implements OnInit {
 
   save(){
     console.log(this.product);
-    this.productService.create(this.product).subscribe(
+    this.productService.edit(this.product).subscribe(
       ()=>{
         this.router.navigate(['admin/productos']);
 

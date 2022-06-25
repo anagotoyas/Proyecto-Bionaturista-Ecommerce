@@ -7,6 +7,7 @@ import { EstadoPedidoService } from 'src/app/admin/shared/estado-pedido.service'
 import { EstadoPedido } from 'src/app/admin/shared/estadoPedido.model';
 import { Pedido } from 'src/app/admin/shared/pedidos.model';
 import { PedidosService } from 'src/app/admin/shared/pedidos.service';
+import { InfoEnvioModel } from 'src/app/user/shoppingCart/shared/infoEnvio.model';
 import { ShoppingCartService } from 'src/app/user/shoppingCart/shared/shopping-cart.service';
 
 
@@ -18,6 +19,7 @@ import { ShoppingCartService } from 'src/app/user/shoppingCart/shared/shopping-c
 export class FormEditPedidoComponent implements OnInit {
   
   form:FormGroup;
+  infoEnvio: InfoEnvioModel;
   usuario: any;
   subtotal: any;
   estadoPedido:any;
@@ -31,6 +33,7 @@ export class FormEditPedidoComponent implements OnInit {
   nombre:any;
   idPedido:any;
   estados:EstadoPedido[];
+  productosPedido: Producto[];
   displayedColumns: string[] = [ 'id','producto','cantidad','precio'];
 
   @Input() pedido: Pedido = new Pedido();
@@ -56,11 +59,12 @@ export class FormEditPedidoComponent implements OnInit {
       this.pedidosService.verPedido(this.idPedido).subscribe((data:any)=>{
         this.pedido = data['body'];
         this.usuario = data['body'].usuario;
-        
+        this.infoEnvio = data['body'].infoEnvio;
+        console.log(this.infoEnvio);
         this.nombre = data['body'].usuario.nombreUsuario;
         this.fechaPedido = data['body'].fechaPedido;
-        
-     
+        this.productosPedido = data['body'].productosPedido;
+        console.log(this.productosPedido)
        
       })
     }
@@ -77,6 +81,9 @@ export class FormEditPedidoComponent implements OnInit {
       ],
       usuario:[
         this.pedido.usuario = this.pedido.usuario
+      ],
+      infoEnvio: [
+        this.pedido.infoEnvio = this.pedido.infoEnvio
       ],
       montoPago: [
         this.pedido.montoPago = this.pedido.montoPago,

@@ -43,7 +43,7 @@ export class NewProductComponent implements OnInit {
       return "https://i.imgur.com/vPy80NW.png";
     }
     else{
-      return "https://i.imgur.com/nKfDcjC.png";
+      return "https://i.imgur.com/JIBtO7K.png";
     }
   }
 

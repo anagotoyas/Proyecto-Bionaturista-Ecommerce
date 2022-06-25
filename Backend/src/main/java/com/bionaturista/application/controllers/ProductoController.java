@@ -1,5 +1,6 @@
 package com.bionaturista.application.controllers;
 
+import com.bionaturista.domain.entities.EstadoPedido;
 import com.bionaturista.domain.entities.Producto;
 import com.bionaturista.domain.services.ProductoService;
 import com.bionaturista.utils.WrapperResponse;
@@ -30,6 +31,12 @@ public class ProductoController {
         productoService.eliminarProducto(idProducto);
         return new WrapperResponse<Void>(true, "success", null).createResponse(HttpStatus.NO_CONTENT);
     }
+    @PutMapping
+    public ResponseEntity<WrapperResponse<Producto>> modificarProducto(@Valid @RequestBody Producto producto){
+        Producto productoUpdate= productoService.modificarProducto(producto);
+        return new WrapperResponse<>(true, "success",productoUpdate).createResponse();
+    }
+
 
     @GetMapping
     public ResponseEntity<WrapperResponse<List<Producto>>> listarProducto(){

@@ -32,6 +32,7 @@ public class PedidoController {
         Pedido pedidoNull=null;
         Integer idUsuario=pedido.getUsuario().getIdUsuario();
         Usuario usuario=usuarioRepository.getById(idUsuario);
+
         if(usuario.getCarritoCompras().isEmpty()){
             return new WrapperResponse<>(false, "El carro de compras está vacío crack.", pedidoNull).createResponse();
         }
