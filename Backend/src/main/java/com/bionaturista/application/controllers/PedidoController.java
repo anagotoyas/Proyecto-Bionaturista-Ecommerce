@@ -44,8 +44,9 @@ public class PedidoController {
 
     @PutMapping
     public ResponseEntity<WrapperResponse<Pedido>> modificarPedido(@Valid @RequestBody Pedido pedido){
+
         Pedido pedidoUpdate=pedidoService.modificarPedido(pedido);
-        return new WrapperResponse<>(true, "success",pedido).createResponse();
+        return new WrapperResponse<>(true, "success",pedidoUpdate).createResponse();
     }
 
     @DeleteMapping("/{idPedido}")

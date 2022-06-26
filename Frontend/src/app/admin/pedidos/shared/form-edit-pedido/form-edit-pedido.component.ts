@@ -117,7 +117,9 @@ export class FormEditPedidoComponent implements OnInit {
       subtotal: [
         this.pedido.subtotal = this.pedido.subtotal,
       ],
-      
+      productosPedido: [
+        this.pedido.productosPedido = this.pedido.productosPedido
+      ]
     });
   }
 

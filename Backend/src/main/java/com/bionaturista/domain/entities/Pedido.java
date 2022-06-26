@@ -65,8 +65,7 @@ public class Pedido {
     @NotNull
     @Column(name = "subtotal",nullable = false)
     private float subtotal;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    
     @ManyToMany
     @JoinTable(name = "detalle_pedido", joinColumns = @JoinColumn(name = "id_pedido"),
             inverseJoinColumns = @JoinColumn(name = "id_producto"))

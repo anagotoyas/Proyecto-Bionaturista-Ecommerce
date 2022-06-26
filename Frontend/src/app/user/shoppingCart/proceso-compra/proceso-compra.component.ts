@@ -184,7 +184,7 @@ export class ProcesoCompraComponent implements OnInit {
 
 
     this.shoppingCartService.crearPedido(sas).subscribe(() => {
-      this.router.navigate(['/user'])
+      this.router.navigate(['/pedidos/mispedidos'])
       Swal.fire({
       icon: 'success',
       title: 'El pago se ha realizado con éxito',

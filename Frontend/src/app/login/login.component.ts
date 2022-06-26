@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('idUsuario',idUsuario)
           }
           else{
-            window.location.replace("../admin");
+            window.location.replace("../admin/productos");
             //this.router.navigate(['/']);
             sessionStorage.setItem('idUsuario',idUsuario)
           }
