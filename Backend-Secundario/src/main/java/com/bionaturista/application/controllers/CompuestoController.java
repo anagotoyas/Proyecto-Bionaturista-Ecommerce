@@ -21,29 +21,29 @@ public class CompuestoController {
     }
 
     @PostMapping
-    public ResponseEntity<WrapperResponse<Compuesto>> crearCompuesto(@Valid @RequestBody Compuesto compuesto){
+    public ResponseEntity<Compuesto> crearCompuesto(@Valid @RequestBody Compuesto compuesto){
         Compuesto compuestoNew= compuestoService.crearCompuesto(compuesto);
-        return new WrapperResponse<>(true, "success", compuestoNew).createResponse();
+        return new ResponseEntity<Compuesto>(compuestoNew, HttpStatus.CREATED);
     }
     @PutMapping
-    public ResponseEntity<WrapperResponse<Compuesto>> modificarCompuesto(@Valid @RequestBody Compuesto compuesto){
+    public ResponseEntity<Compuesto> modificarCompuesto(@Valid @RequestBody Compuesto compuesto){
         Compuesto compuestoUpdate = compuestoService.modificarCompuesto(compuesto);
-        return new WrapperResponse<>(true, "success", compuestoUpdate).createResponse();
+        return new ResponseEntity<Compuesto>(compuestoUpdate, HttpStatus.CREATED);
     }
     @DeleteMapping("/{idCompuesto}")
-    public ResponseEntity<WrapperResponse<Void>> eliminarCompuesto(@PathVariable("idCompuesto") Integer idCompuesto){
+    public ResponseEntity<Void> eliminarCompuesto(@PathVariable("idCompuesto") Integer idCompuesto){
         compuestoService.eliminarCompuesto(idCompuesto);
-        return new WrapperResponse<Void>(true, "success", null).createResponse(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
     @GetMapping
-    public ResponseEntity<WrapperResponse<List<Compuesto>>> listarCompuesto(){
+    public ResponseEntity<List<Compuesto>> listarCompuesto(){
         List<Compuesto> compuestos=compuestoService.listarCompuesto();
-        return new WrapperResponse<>(true, "success", compuestos).createResponse();
+        return new ResponseEntity<List<Compuesto>>(compuestos, HttpStatus.OK);
     }
     @GetMapping("/{idCompuesto}")
-    public ResponseEntity<WrapperResponse<Compuesto>> obtenerCompuestoPorIdCompuesto(@PathVariable("idCompuesto") Integer idCompuesto){
+    public ResponseEntity<Compuesto> obtenerCompuestoPorIdCompuesto(@PathVariable("idCompuesto") Integer idCompuesto){
         Compuesto compuesto=compuestoService.obtenerCompuestoPorIdCompuesto(idCompuesto);
-        return new WrapperResponse<>(true, "success", compuesto).createResponse();
+        return new ResponseEntity<Compuesto>(compuesto, HttpStatus.OK);
     }
 }
 

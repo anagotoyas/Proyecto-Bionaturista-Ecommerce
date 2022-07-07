@@ -21,29 +21,29 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<WrapperResponse<Categoria>> crearCategoria(@Valid @RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> crearCategoria(@Valid @RequestBody Categoria categoria){
         Categoria categoriaNew= categoriaService.crearCategoria(categoria);
-        return new WrapperResponse<>(true, "success", categoriaNew).createResponse();
+        return new ResponseEntity<Categoria>(categoriaNew, HttpStatus.CREATED);
     }
     @PutMapping
-    public ResponseEntity<WrapperResponse<Categoria>> modificarCategoria(@Valid @RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> modificarCategoria(@Valid @RequestBody Categoria categoria){
         Categoria categoriaUpdate = categoriaService.modificarCategoria(categoria);
-        return new WrapperResponse<>(true, "success", categoriaUpdate).createResponse();
+        return new ResponseEntity<Categoria>(categoriaUpdate, HttpStatus.CREATED);
     }
     @DeleteMapping("/{idCategoria}")
-    public ResponseEntity<WrapperResponse<Void>> eliminarCategoria(@PathVariable("idCategoria") Integer idCategoria){
+    public ResponseEntity<Void> eliminarCategoria(@PathVariable("idCategoria") Integer idCategoria){
         categoriaService.eliminarCategoria(idCategoria);
-        return new WrapperResponse<Void>(true, "success", null).createResponse(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
     @GetMapping
-    public ResponseEntity<WrapperResponse<List<Categoria>>> listarCategoria(){
+    public ResponseEntity<List<Categoria>> listarCategoria(){
         List<Categoria> categorias=categoriaService.listarCategoria();
-        return new WrapperResponse<>(true, "success", categorias).createResponse();
+        return new ResponseEntity<List<Categoria>>(categorias, HttpStatus.OK);
     }
     @GetMapping("/{idCategoria}")
-    public ResponseEntity<WrapperResponse<Categoria>> obtenerCategoriaPorIdCategoria(@PathVariable("idCategoria") Integer idCategoria){
+    public ResponseEntity<Categoria> obtenerCategoriaPorIdCategoria(@PathVariable("idCategoria") Integer idCategoria){
         Categoria categoria=categoriaService.obtenerCategoriaPorIdCategoria(idCategoria);
-        return new WrapperResponse<>(true, "success", categoria).createResponse();
+        return new ResponseEntity<Categoria>(categoria, HttpStatus.OK);
     }
 }
 
