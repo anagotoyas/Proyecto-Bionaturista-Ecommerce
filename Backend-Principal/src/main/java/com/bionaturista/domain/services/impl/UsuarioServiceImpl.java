@@ -19,12 +19,15 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     protected final Log logger = LogFactory.getLog(getClass());
 
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Value("${service.productos}")
     private String servicioProducto;
