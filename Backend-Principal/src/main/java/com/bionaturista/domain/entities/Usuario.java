@@ -2,6 +2,8 @@ package com.bionaturista.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
+@Getter
+@Setter
 public class Usuario {
 
     @Id
@@ -38,73 +42,16 @@ public class Usuario {
     private String direccionUsuario;
 
     @ManyToOne
-    @JoinColumn(name = "id_rol", nullable = false,
-            foreignKey = @ForeignKey(name = "FK_id_rol"))
+    @JoinColumn(name = "id_rol", nullable = false, foreignKey = @ForeignKey(name = "FK_id_rol"))
     private Rol rol;
-
-
-
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos;
 
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getContrasenaUsuario() {
-        return contrasenaUsuario;
-    }
-
-    public void setContrasenaUsuario(String contrasenaUsuario) {
-        this.contrasenaUsuario = contrasenaUsuario;
-    }
-
-    public String getCorreoUsuario() {
-        return correoUsuario;
-    }
-
-    public void setCorreoUsuario(String correoUsuario) {
-        this.correoUsuario = correoUsuario;
-    }
-
-    public String getDireccionUsuario() {
-        return direccionUsuario;
-    }
-
-    public void setDireccionUsuario(String direccionUsuario) {
-        this.direccionUsuario = direccionUsuario;
-    }
-
-
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany
+    @JoinTable(name = "carritos", joinColumns = @JoinColumn(name = "id_carrito"),inverseJoinColumns = @JoinColumn(name = "id_producto"))
+    Set<Producto> carritoCompras = new LinkedHashSet<>();
 }
 

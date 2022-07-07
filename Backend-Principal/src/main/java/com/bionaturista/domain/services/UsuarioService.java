@@ -7,14 +7,19 @@ import java.util.List;
 public interface UsuarioService {
 
     Usuario crearUsuario(Usuario usuario);
+
     Usuario modificarUsuario(Usuario usuario);
+
     void eliminarUsuario(Integer idUsuario);
+
     List<Usuario> listarUsuario();
+
     Usuario obtenerUsuarioPorIdUsuario(Integer idUsuario);
-    //void agregarProductoAlCarrito(Usuario usuario, Producto producto);
-    //void eliminarProductoAlCarrito(Usuario usuario, Producto producto);
+
+    void agregarProductoAlCarrito(int idUsuario, int idProducto) throws InterruptedException;
+
+    void eliminarProductoAlCarrito(Integer idUsuario, Integer idProducto) throws InterruptedException;
 
     Usuario fetchUserByCorreoyContra(String correoUsuario, String contrasenaUsuario);
-
 
 }

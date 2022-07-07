@@ -1,6 +1,8 @@
 package com.bionaturista.domain.entities;
 
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -8,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
+@Getter
+@Setter
 public class Rol {
 
     @Id
@@ -22,20 +26,5 @@ public class Rol {
     @OneToMany(mappedBy ="rol")
     private List<Usuario> usuario;
 
-    public Integer getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
-    }
-
-    public String getNombreRol() {
-        return nombreRol;
-    }
-
-    public void setNombreRol(String nombreRol) {
-        this.nombreRol = nombreRol;
-    }
 }
 

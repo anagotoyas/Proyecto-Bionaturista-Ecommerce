@@ -1,12 +1,12 @@
 package com.bionaturista.application.controllers;
 
+import com.bionaturista.application.dto.respuestas.Respuesta;
+import com.bionaturista.domain.entities.Producto;
 import com.bionaturista.domain.entities.Usuario;
-import com.bionaturista.domain.repositories.UsuarioRepository;
-import com.bionaturista.domain.repositories.PedidoRepository;
 import com.bionaturista.domain.services.UsuarioService;
 import com.bionaturista.domain.services.PedidoService;
 import com.bionaturista.utils.WrapperResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +20,6 @@ public class UsuarioController {
 
     private  final UsuarioService usuarioService;
     private PedidoService pedidoService;
-
-    //@Autowired
-    //private ProductoRepository productoRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private PedidoRepository pedidoRepository;
 
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
@@ -57,23 +48,56 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioService.listarUsuario();
         return new WrapperResponse<>(true, "success", usuarios).createResponse();
     }
+    @PutMapping("/{idUsuario}/carrito/{idProducto}")
+    public ResponseEntity<WrapperResponse<Respuesta>> agregarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
 
-    //@PutMapping("/{idUsuario}/carrito/{idProducto}")
-    //public Usuario agregarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
-       // Producto productoN = productoRepository.findById(idProducto).get();
-        //Usuario usuarioN = usuarioRepository.findById(idUsuario).get();
-        //usuarioService.agregarProductoAlCarrito(usuarioN, productoN);
-        //return usuarioRepository.save(usuarioN);
+        Respuesta respuesta = new Respuesta();
 
-    //}
-    //@DeleteMapping("/{idUsuario}/carrito/{idProducto}")
-    //public Usuario eliminarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
-       // Producto productoN = productoRepository.findById(idProducto).get();
-        //Usuario usuarioN = usuarioRepository.findById(idUsuario).get();
-        //usuarioService.eliminarProductoAlCarrito(usuarioN, productoN);
-        //return usuarioRepository.save(usuarioN);
+        try {
+            usuarioService.agregarProductoAlCarrito(idUsuario,idProducto);
 
-    //}
+            respuesta.setMensaje("El producto se ha agregado con exito");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (InterruptedException e){
+
+            respuesta.setMensaje("No se ha podido agregar el producto");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
+
+
+    }
+    @DeleteMapping("/{idUsuario}/carrito/{idProducto}")
+    public ResponseEntity<WrapperResponse<Respuesta>> eliminarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
+
+        Respuesta respuesta = new Respuesta();
+
+        try {
+            usuarioService.eliminarProductoAlCarrito(idUsuario, idProducto);
+
+            respuesta.setMensaje("El producto se ha eliminado con exito");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (InterruptedException e){
+
+            respuesta.setMensaje("No se ha podido eliminar el producto");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 
     @GetMapping("/{idUsuario}")
     public ResponseEntity<WrapperResponse<Usuario>> obtenerUsuarioPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
@@ -81,15 +105,10 @@ public class UsuarioController {
         return new WrapperResponse<>(true,"success",usuario).createResponse();
     }
 
-    //@GetMapping("/{idUsuario}/carrito")
-    //public Set<Producto> obtenerCarritoPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
-      //  Usuario usuario = usuarioService.obtenerUsuarioPorIdUsuario(idUsuario);
-        //return usuario.getCarritoCompras();
-
-    //}
-
-
-
-
+    @GetMapping("/{idUsuario}/carrito")
+    public Set<Producto> obtenerCarritoPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
+      Usuario usuario = usuarioService.obtenerUsuarioPorIdUsuario(idUsuario);
+      return usuario.getCarritoCompras();
+    }
 }
 
