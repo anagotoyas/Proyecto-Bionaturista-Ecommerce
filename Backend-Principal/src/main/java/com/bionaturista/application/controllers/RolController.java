@@ -1,6 +1,11 @@
 package com.bionaturista.application.controllers;
 
+import com.bionaturista.application.dto.respuestas.Respuesta;
+import com.bionaturista.application.dto.rol.RespuestaListRol;
+import com.bionaturista.application.dto.rol.RespuetaRol;
+import com.bionaturista.application.dto.usuario.RespuestaUsuario;
 import com.bionaturista.domain.entities.Rol;
+import com.bionaturista.domain.entities.Usuario;
 import com.bionaturista.domain.services.RolService;
 import com.bionaturista.utils.WrapperResponse;
 import org.springframework.http.HttpStatus;
@@ -21,33 +26,136 @@ public class RolController {
     }
 
     @PostMapping
-    public ResponseEntity<WrapperResponse<Rol>> crearRol(@Valid @RequestBody Rol rol) {
-        Rol rolNew = rolService.crearRol(rol);
-        return new WrapperResponse<>(true,"success", rolNew).createResponse();
+    public ResponseEntity<WrapperResponse<RespuetaRol>> crearRol(@Valid @RequestBody Rol rol) {
+
+
+        RespuetaRol respuesta = new RespuetaRol();
+
+        try {
+            Rol rolNew = rolService.crearRol(rol);
+
+            respuesta.setMensaje("success");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+            respuesta.setData(rolNew);
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (Exception e){
+
+            respuesta.setMensaje("failed");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PutMapping
-    public ResponseEntity<WrapperResponse<Rol>> modificarCompuesto(@Valid @RequestBody Rol rol){
-        Rol rolUpdate = rolService.modificarRol(rol);
-        return new WrapperResponse<>(true, "success", rolUpdate).createResponse();
+    public ResponseEntity<WrapperResponse<RespuetaRol>> modificarRol(@Valid @RequestBody Rol rol){
+
+        RespuetaRol respuesta = new RespuetaRol();
+
+        try {
+            Rol rolUpdate = rolService.modificarRol(rol);
+
+            respuesta.setMensaje("success");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+            respuesta.setData(rolUpdate);
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (Exception e){
+
+            respuesta.setMensaje("failed");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @DeleteMapping("/{idRol}")
-    public ResponseEntity<WrapperResponse<Void>> eliminarCompuesto(@PathVariable("idRol") Integer idRol){
-        rolService.eliminarRol(idRol);
-        return new WrapperResponse<Void>(true, "success", null).createResponse(HttpStatus.NO_CONTENT);
+    public ResponseEntity<WrapperResponse<Respuesta>> eliminarCompuesto(@PathVariable("idRol") Integer idRol){
+
+
+        Respuesta respuesta = new Respuesta();
+
+        try {
+
+            rolService.eliminarRol(idRol);
+
+            respuesta.setMensaje("success");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (Exception e){
+
+            respuesta.setMensaje("failed");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/{idRol}")
-    public ResponseEntity<WrapperResponse<Rol>> obtenerRolPorIdRol(@PathVariable("idRol") Integer idRol) {
-        Rol rol = rolService.obtenerRolPorIdRol(idRol);
-        return new WrapperResponse<>(true,"success", rol).createResponse();
+    public ResponseEntity<WrapperResponse<RespuetaRol>> obtenerRolPorIdRol(@PathVariable("idRol") Integer idRol) {
+
+
+        RespuetaRol respuesta = new RespuetaRol();
+
+        try {
+            Rol rol = rolService.obtenerRolPorIdRol(idRol);
+
+            respuesta.setMensaje("success");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+            respuesta.setData(rol);
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (Exception e){
+
+            respuesta.setMensaje("failed");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping
-    public ResponseEntity<WrapperResponse<List<Rol>>> listarRol(){
-        List<Rol> roles = rolService.listarRol();
-        return new WrapperResponse<>(true, "success", roles).createResponse();
+    public ResponseEntity<WrapperResponse<RespuestaListRol>> listarRol(){
+
+        RespuestaListRol respuesta = new RespuestaListRol();
+
+        try {
+            List<Rol> roles = rolService.listarRol();
+
+            respuesta.setMensaje("success");
+            respuesta.setSatisfactorio(true);
+            respuesta.setCodigo("200");
+            respuesta.setData(roles);
+
+            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+
+        }catch (Exception e){
+
+            respuesta.setMensaje("failed");
+            respuesta.setSatisfactorio(false);
+            respuesta.setCodigo("400");
+
+            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }
