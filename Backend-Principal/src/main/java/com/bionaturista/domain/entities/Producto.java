@@ -13,6 +13,10 @@ import javax.validation.constraints.Size;
 @Entity
 @ToString
 @Table(name="productos")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Producto {
 
     @Id
@@ -57,69 +61,4 @@ public class Producto {
     private Categoria categoria;
 
 
-    public Integer getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
-
-    public String getImagenProducto() {
-        return imagenProducto;
-    }
-
-    public void setImagenProducto(String imagenProducto) {
-        this.imagenProducto = imagenProducto;
-    }
-
-    public String getDescripcionProducto() {
-        return descripcionProducto;
-    }
-
-    public void setDescripcionProducto(String descripcionProducto) {
-        this.descripcionProducto = descripcionProducto;
-    }
-
-    public float getPrecioProducto() {
-        return precioProducto;
-    }
-
-    public void setPrecioProducto(float precioProducto) {
-        this.precioProducto = precioProducto;
-    }
-
-    public int getStockProducto() {
-        return stockProducto;
-    }
-
-    public void setStockProducto(int stockProducto) {
-        this.stockProducto = stockProducto;
-    }
-
-    //@JsonBackReference(value="comp")
-    public Compuesto getCompuesto() {
-        return compuesto;
-    }
-
-    public void setCompuesto(Compuesto compuesto) {
-        this.compuesto = compuesto;
-    }
-
-    //@JsonBackReference(value="cat")
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
 }

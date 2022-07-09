@@ -29,7 +29,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<WrapperResponse<RespuestaUsuario>> registrarUsuario(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<RespuestaUsuario> registrarUsuario(@Valid @RequestBody Usuario usuario) {
 
 
         RespuestaUsuario respuesta = new RespuestaUsuario();
@@ -42,7 +42,7 @@ public class UsuarioController {
             respuesta.setCodigo("200");
             respuesta.setData(usuarioNew);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<RespuestaUsuario>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -50,14 +50,14 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
 
     @PostMapping("/login")
-    public ResponseEntity<WrapperResponse<RespuestaUsuario>> logIn (@Valid @RequestBody Usuario user) throws Exception{
+    public ResponseEntity<RespuestaUsuario> logIn (@Valid @RequestBody Usuario user) throws Exception{
 
         RespuestaUsuario respuesta = new RespuestaUsuario();
 
@@ -74,7 +74,7 @@ public class UsuarioController {
             respuesta.setCodigo("200");
             respuesta.setData(userObj);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -82,13 +82,13 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @GetMapping
-    public ResponseEntity<WrapperResponse<RespuestaListUsuarios>> listarUsuario(){
+    public ResponseEntity<RespuestaListUsuarios> listarUsuario(){
 
         RespuestaListUsuarios respuesta = new RespuestaListUsuarios();
 
@@ -100,7 +100,7 @@ public class UsuarioController {
             respuesta.setCodigo("200");
             respuesta.setData(usuarios);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -108,13 +108,13 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
 
     }
     @PutMapping("/{idUsuario}/carrito/{idProducto}")
-    public ResponseEntity<WrapperResponse<Respuesta>> agregarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
+    public ResponseEntity<Respuesta> agregarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
 
         Respuesta respuesta = new Respuesta();
 
@@ -125,7 +125,7 @@ public class UsuarioController {
             respuesta.setSatisfactorio(true);
             respuesta.setCodigo("200");
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (InterruptedException e){
 
@@ -133,14 +133,14 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
 
 
     }
     @DeleteMapping("/{idUsuario}/carrito/{idProducto}")
-    public ResponseEntity<WrapperResponse<Respuesta>> eliminarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
+    public ResponseEntity<Respuesta> eliminarProductoAlCarrito(@PathVariable Integer idUsuario, @PathVariable Integer idProducto) {
 
         Respuesta respuesta = new Respuesta();
 
@@ -151,7 +151,7 @@ public class UsuarioController {
             respuesta.setSatisfactorio(true);
             respuesta.setCodigo("200");
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (InterruptedException e){
 
@@ -159,13 +159,13 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<WrapperResponse<RespuestaUsuario>> obtenerUsuarioPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
+    public ResponseEntity<RespuestaUsuario> obtenerUsuarioPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
 
 
         RespuestaUsuario respuesta = new RespuestaUsuario();
@@ -178,7 +178,7 @@ public class UsuarioController {
             respuesta.setCodigo("200");
             respuesta.setData(usuario);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -186,12 +186,12 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/{idUsuario}/carrito")
-    public ResponseEntity<WrapperResponse<RespuestaCarrito>> obtenerCarritoPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
+    public ResponseEntity<RespuestaCarrito> obtenerCarritoPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
 
 
         RespuestaCarrito respuesta = new RespuestaCarrito();
@@ -204,7 +204,7 @@ public class UsuarioController {
             respuesta.setCodigo("200");
             respuesta.setData(usuario.getCarritoCompras());
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -212,7 +212,7 @@ public class UsuarioController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }

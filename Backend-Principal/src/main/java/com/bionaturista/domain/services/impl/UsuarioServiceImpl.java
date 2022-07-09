@@ -1,7 +1,9 @@
 package com.bionaturista.domain.services.impl;
 
+import com.bionaturista.application.dto.producto.ProductoDto;
 import com.bionaturista.domain.entities.Producto;
 import com.bionaturista.domain.entities.Usuario;
+import com.bionaturista.domain.repositories.ProductoRepository;
 import com.bionaturista.domain.repositories.UsuarioRepository;
 import com.bionaturista.domain.services.UsuarioService;
 import com.bionaturista.validators.UsuarioValidator;
@@ -19,14 +21,16 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final ProductoRepository productoRepository;
+
     protected final Log logger = LogFactory.getLog(getClass());
 
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, ProductoRepository productoRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.productoRepository = productoRepository;
     }
 
     @Value("${service.producto}")
@@ -60,19 +64,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void agregarProductoAlCarrito(int idUsuario, int idProducto) throws InterruptedException{
-        Producto producto;
+
+        ProductoDto producto;
         RestTemplate restTemplate=new RestTemplate();
         String findByIdProduct = this.servicioProducto + "/"+idProducto;
         Usuario usuario = this.obtenerUsuarioPorIdUsuario(idUsuario);
 
-        ResponseEntity<Producto> response = restTemplate.exchange(findByIdProduct, HttpMethod.GET, null,
-                new ParameterizedTypeReference<Producto>() {
+        ResponseEntity<ProductoDto> response = restTemplate.exchange(findByIdProduct, HttpMethod.GET, null,
+                new ParameterizedTypeReference<ProductoDto>() {
                 });
         if(response.getStatusCode() == HttpStatus.OK){
             producto = response.getBody();
-            assert producto != null;
+            Producto productoEntidad = this.productoRepository.findById(producto.getIdProducto()).orElse(new Producto());
             if(producto.getStockProducto()>0){
-                usuario.getCarritoCompras().add(producto);
+                usuario.getCarritoCompras().add(productoEntidad);
             }
         }else{
             logger.error("La respuesta del servicio no se ha procesado con exito ErrorCode:" + response.getStatusCode());
@@ -84,15 +89,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void eliminarProductoAlCarrito(Integer idUsuario, Integer idProducto) throws InterruptedException{
         Usuario usuario = this.obtenerUsuarioPorIdUsuario(idUsuario);
-        Producto producto;
+        ProductoDto producto;
         RestTemplate restTemplate=new RestTemplate();
         String findByIdProduct = this.servicioProducto + "/"+idProducto;
-        ResponseEntity<Producto> response = restTemplate.exchange(findByIdProduct, HttpMethod.GET, null,
-                new ParameterizedTypeReference<Producto>() {
+        ResponseEntity<ProductoDto> response = restTemplate.exchange(findByIdProduct, HttpMethod.GET, null,
+                new ParameterizedTypeReference<ProductoDto>() {
                 });
         if(response.getStatusCode() == HttpStatus.OK) {
             producto = response.getBody();
-            usuario.getCarritoCompras().remove(producto);
+
+            Producto productoEntidad = this.productoRepository.findById(producto.getIdProducto()).orElse(new Producto());
+
+            usuario.getCarritoCompras().remove(productoEntidad);
         }else{
             logger.error("La respuesta del servicio no se ha procesado con exito ErrorCode:" + response.getStatusCode());
             throw new InterruptedException("Error al invocar el servicio. Error Code: " + response.getStatusCode());

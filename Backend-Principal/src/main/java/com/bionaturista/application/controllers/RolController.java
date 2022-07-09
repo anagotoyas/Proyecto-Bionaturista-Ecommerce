@@ -26,7 +26,7 @@ public class RolController {
     }
 
     @PostMapping
-    public ResponseEntity<WrapperResponse<RespuetaRol>> crearRol(@Valid @RequestBody Rol rol) {
+    public ResponseEntity<RespuetaRol> crearRol(@Valid @RequestBody Rol rol) {
 
 
         RespuetaRol respuesta = new RespuetaRol();
@@ -39,7 +39,7 @@ public class RolController {
             respuesta.setCodigo("200");
             respuesta.setData(rolNew);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -47,13 +47,13 @@ public class RolController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @PutMapping
-    public ResponseEntity<WrapperResponse<RespuetaRol>> modificarRol(@Valid @RequestBody Rol rol){
+    public ResponseEntity<RespuetaRol> modificarRol(@Valid @RequestBody Rol rol){
 
         RespuetaRol respuesta = new RespuetaRol();
 
@@ -65,7 +65,7 @@ public class RolController {
             respuesta.setCodigo("200");
             respuesta.setData(rolUpdate);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -73,13 +73,13 @@ public class RolController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @DeleteMapping("/{idRol}")
-    public ResponseEntity<WrapperResponse<Respuesta>> eliminarCompuesto(@PathVariable("idRol") Integer idRol){
+    public ResponseEntity<Respuesta> eliminarCompuesto(@PathVariable("idRol") Integer idRol){
 
 
         Respuesta respuesta = new Respuesta();
@@ -92,7 +92,7 @@ public class RolController {
             respuesta.setSatisfactorio(true);
             respuesta.setCodigo("200");
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -100,13 +100,13 @@ public class RolController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @GetMapping("/{idRol}")
-    public ResponseEntity<WrapperResponse<RespuetaRol>> obtenerRolPorIdRol(@PathVariable("idRol") Integer idRol) {
+    public ResponseEntity<RespuetaRol> obtenerRolPorIdRol(@PathVariable("idRol") Integer idRol) {
 
 
         RespuetaRol respuesta = new RespuetaRol();
@@ -119,7 +119,7 @@ public class RolController {
             respuesta.setCodigo("200");
             respuesta.setData(rol);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -127,13 +127,13 @@ public class RolController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @GetMapping
-    public ResponseEntity<WrapperResponse<RespuestaListRol>> listarRol(){
+    public ResponseEntity<RespuestaListRol> listarRol(){
 
         RespuestaListRol respuesta = new RespuestaListRol();
 
@@ -145,7 +145,7 @@ public class RolController {
             respuesta.setCodigo("200");
             respuesta.setData(roles);
 
-            return new WrapperResponse<>(true, "success", respuesta).createResponse(HttpStatus.OK);
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         }catch (Exception e){
 
@@ -153,7 +153,7 @@ public class RolController {
             respuesta.setSatisfactorio(false);
             respuesta.setCodigo("400");
 
-            return new WrapperResponse<>(false, "failed", respuesta).createResponse(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
 
     }
