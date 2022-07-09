@@ -44,6 +44,7 @@ public class CategoriaController {
     public ResponseEntity<RespuestaCategoriaEntity> crearCategoria(@RequestBody CategoriaDto categoria){
 
         RespuestaCategoriaEntity res = new RespuestaCategoriaEntity();
+        System.out.println("cate"+categoria);
 
         try {
 
@@ -53,6 +54,7 @@ public class CategoriaController {
             Categoria category = categoriaService.crearCategoria(categoria);
 
             res.setData(category);
+            System.out.println("category"+categoria);
 
             if (res.isSatisfactorio() == true){
                 return new ResponseEntity<RespuestaCategoriaEntity>(res, HttpStatus.OK);

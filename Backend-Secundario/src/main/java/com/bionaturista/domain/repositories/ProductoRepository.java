@@ -14,7 +14,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     @Query(value= "SELECT COUNT(*) FROM Producto", nativeQuery = true)
     Long contarProductos();
 
-    @Query("SELECT p FROM Producto p WHERE LOWER(p.nombreP) LIKE %:nombreP%")
-    List<Producto> buscarPorNombre(@Param("nombreP") String nombreP);
+    @Query("SELECT p FROM Producto p WHERE LOWER(p.nombreProducto) LIKE %:nombreProducto%")
+    List<Producto> buscarPorNombre(@Param("nombreProducto") String nombreProducto);
 
 }

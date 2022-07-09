@@ -1,5 +1,6 @@
 package com.bionaturista.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Categoria {
     private String nombreCategoria;
 
     @OneToMany(mappedBy ="categoria")
+
     private List<Producto> producto;
 
     public Integer getIdCategoria() {

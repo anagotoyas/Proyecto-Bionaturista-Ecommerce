@@ -28,33 +28,33 @@ public class Producto {
     @NotNull
     @Size(min = 2, max = 70, message = "El nombre del producto debe tener como mínimo 2 caracteres")
     @Column(name="nombre_producto", nullable = false, length = 70)
-    private String nombreP;
+    private String nombreProducto;
 
     @Column(name="imagen_producto")
-    private String imagenP;
+    private String imagenProducto;
 
     @Column(name="descripcion_producto")
-    private String descripcionP;
+    private String descripcionProducto;
 
     @NotNull
     @Column(name="precio_producto")
-    private float precioP;
+    private float precioProducto;
 
     @NotNull
     @Column(name="stock_producto")
-    private int stockP;
+    private int stockProducto;
 
     @ManyToOne
+
     @JoinColumn(name = "id_compuesto", nullable = false,
             foreignKey = @ForeignKey(name = "FK_id_compuesto"))
     private Compuesto compuesto;
 
     @ManyToOne
+
     @JoinColumn(name = "id_categoria", nullable = false,
             foreignKey = @ForeignKey(name = "FK_id_categoria"))
     private Categoria categoria;
-
-
 
     public Integer getIdProducto() {
         return idProducto;
@@ -64,44 +64,44 @@ public class Producto {
         this.idProducto = idProducto;
     }
 
-    public String getNombreP() {
-        return nombreP;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setNombreP(String nombreP) {
-        this.nombreP = nombreP;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
-    public String getImagenP() {
-        return imagenP;
+    public String getImagenProducto() {
+        return imagenProducto;
     }
 
-    public void setImagenP(String imagenP) {
-        this.imagenP = imagenP;
+    public void setImagenProducto(String imagenProducto) {
+        this.imagenProducto = imagenProducto;
     }
 
-    public String getDescripcionP() {
-        return descripcionP;
+    public String getDescripcionProducto() {
+        return descripcionProducto;
     }
 
-    public void setDescripcionP(String descripcionP) {
-        this.descripcionP = descripcionP;
+    public void setDescripcionProducto(String descripcionProducto) {
+        this.descripcionProducto = descripcionProducto;
     }
 
-    public float getPrecioP() {
-        return precioP;
+    public float getPrecioProducto() {
+        return precioProducto;
     }
 
-    public void setPrecioP(float precioP) {
-        this.precioP = precioP;
+    public void setPrecioProducto(float precioProducto) {
+        this.precioProducto = precioProducto;
     }
 
-    public int getStockP() {
-        return stockP;
+    public int getStockProducto() {
+        return stockProducto;
     }
 
-    public void setStockP(int stockP) {
-        this.stockP = stockP;
+    public void setStockProducto(int stockProducto) {
+        this.stockProducto = stockProducto;
     }
 
     public Compuesto getCompuesto() {

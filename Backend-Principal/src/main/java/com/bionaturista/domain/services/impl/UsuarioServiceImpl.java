@@ -29,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    @Value("${service.productos}")
+    @Value("${service.producto}")
     private String servicioProducto;
 
     @Override
@@ -71,7 +71,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         if(response.getStatusCode() == HttpStatus.OK){
             producto = response.getBody();
             assert producto != null;
-            if(producto.getStockP()>0){
+            if(producto.getStockProducto()>0){
                 usuario.getCarritoCompras().add(producto);
             }
         }else{
