@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "ac177cc5-752c-4097-be29-bf423692597e",
+		"_postman_id": "3cfea8c0-9ab6-49b3-8cc6-c74ced2b10dd",
 		"name": "Bionaturista",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17991254"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -113,6 +112,137 @@
 							"path": [
 								"usuarios",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarProductoAlCarrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/bionaturista//usuarios/1/carrito/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"bionaturista",
+								"",
+								"usuarios",
+								"1",
+								"carrito",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreUsuario\": \"JosecitoVB\",\n    \"contrasenaUsuario\":\"josecito\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/bionaturista//usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"bionaturista",
+								"",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarProductoAlCarrito",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/bionaturista//usuarios/1/carrito/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"bionaturista",
+								"",
+								"usuarios",
+								"1",
+								"carrito",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerCarritoPorIdUsuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/bionaturista//usuarios/1/carrito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"bionaturista",
+								"",
+								"usuarios",
+								"1",
+								"carrito"
 							]
 						}
 					},
@@ -408,7 +538,10 @@
 					"name": "Obtener Producto por Nombre",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
