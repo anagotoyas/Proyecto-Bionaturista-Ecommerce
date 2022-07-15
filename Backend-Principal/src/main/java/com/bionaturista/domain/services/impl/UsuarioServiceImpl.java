@@ -1,8 +1,12 @@
 package com.bionaturista.domain.services.impl;
 
 import com.bionaturista.application.dto.producto.ProductoDto;
+import com.bionaturista.domain.Pattern.Subscriber;
+import com.bionaturista.domain.entities.Notificacion;
+import com.bionaturista.domain.entities.Pedido;
 import com.bionaturista.domain.entities.Producto;
 import com.bionaturista.domain.entities.Usuario;
+import com.bionaturista.domain.repositories.NotificacionRepository;
 import com.bionaturista.domain.repositories.ProductoRepository;
 import com.bionaturista.domain.repositories.UsuarioRepository;
 import com.bionaturista.domain.services.UsuarioService;
@@ -15,22 +19,27 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements UsuarioService, Subscriber {
 
     private final UsuarioRepository usuarioRepository;
     private final ProductoRepository productoRepository;
 
+    private final NotificacionRepository notificacionRepository;
+
     protected final Log logger = LogFactory.getLog(getClass());
 
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, ProductoRepository productoRepository) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, ProductoRepository productoRepository, NotificacionRepository notificacionRepository) {
         this.usuarioRepository = usuarioRepository;
         this.productoRepository = productoRepository;
+        this.notificacionRepository = notificacionRepository;
+
     }
 
     @Value("${service.producto}")
@@ -47,6 +56,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         return null;
     }
 
+
+
     @Override
     public void eliminarUsuario(Integer idUsuario) {
 
@@ -55,6 +66,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> listarUsuario() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public List<Usuario> buscarUsuariosByRol(String rol) {
+        return this.usuarioRepository.findAllByRol(rol);
     }
 
     @Override
@@ -112,5 +128,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findUsuarioByCorreoUsuarioAndContrasenaUsuario(correoUsuario, contrasenaUsuario);
     }
 
+    @Override
+    public void actualizar(Usuario u, Usuario u2, String accion) {
+        Notificacion notificacion = new Notificacion();
+        notificacion.setUsuario(u);
+        notificacion.setContenido("El usuario "+ u2.getNombreUsuario()+" "+accion);
+        this.notificacionRepository.save(notificacion);
+
+    }
 }
 

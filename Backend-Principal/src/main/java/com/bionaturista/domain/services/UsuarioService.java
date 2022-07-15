@@ -14,6 +14,8 @@ public interface UsuarioService {
 
     List<Usuario> listarUsuario();
 
+    List<Usuario> buscarUsuariosByRol(String rol);
+
     Usuario obtenerUsuarioPorIdUsuario(Integer idUsuario);
 
     void agregarProductoAlCarrito(int idUsuario, int idProducto) throws InterruptedException;

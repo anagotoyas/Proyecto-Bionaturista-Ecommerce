@@ -53,5 +53,14 @@ public class Usuario {
     @ManyToMany
     @JoinTable(name = "carritos", joinColumns = @JoinColumn(name = "id_carrito"),inverseJoinColumns = @JoinColumn(name = "id_producto"))
     Set<Producto> carritoCompras = new LinkedHashSet<>();
+
+    //Agregé una nueva lista de notificaciones, esta solo será usada por los administradores
+    //Se usará para notificar cada vez que se haya agregado un nuevo pedido
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "usuario")
+    private List<Notificacion> notificaciones;
+
+
 }
 

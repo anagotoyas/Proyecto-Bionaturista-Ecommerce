@@ -1,8 +1,11 @@
 package com.bionaturista.domain.services.impl;
 
+import com.bionaturista.domain.Pattern.Publisher;
+import com.bionaturista.domain.Pattern.Subscriber;
 import com.bionaturista.domain.entities.*;
 import com.bionaturista.domain.repositories.*;
 import com.bionaturista.domain.services.PedidoService;
+import com.bionaturista.domain.services.UsuarioService;
 import com.bionaturista.validators.PedidoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +14,13 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class PedidoServiceImpl implements PedidoService {
+public class PedidoServiceImpl implements PedidoService, Publisher {
     private final PedidoRepository pedidoRepository;
     @Autowired
     private InfoEnvioRepository infoEnvioRepository;
+
+    @Autowired
+    private UsuarioServiceImpl service;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -50,6 +56,7 @@ public class PedidoServiceImpl implements PedidoService {
         InfoEnvio info = this.infoEnvioRepository.findById(iv.getIdInfoEnvio()).orElse(new InfoEnvio());
         pedido.setInfoEnvio(info);
 
+        this.notificar(pedido.getUsuario(), "ha pagado su pedido");
 
 
         usuarioRepository.save(usuarioFinal);
@@ -84,17 +91,22 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Pedido modificarPedido(Pedido pedido) {
         PedidoValidator.validate(pedido);
+        this.notificar(pedido.getUsuario(), "ha modificado su pedido");
         return pedidoRepository.save(pedido);
     }
 
     @Override
     public void eliminarPedido(Integer idPedido) {
+        Pedido pedido=pedidoRepository.findById(idPedido).orElse(new Pedido());
+        this.notificar(pedido.getUsuario(), "ha eliminado su pedido");
         pedidoRepository.deleteById(idPedido);
     }
 
     @Override
     public Pedido obtenerPedidoPorIdPedido(Integer idPedido) {
+
         return pedidoRepository.findById(idPedido).orElse(new Pedido());
+
     }
 
     @Override
@@ -118,7 +130,14 @@ public class PedidoServiceImpl implements PedidoService {
         Pedido pedido=pedidoRepository.findById(idPedido).orElse(new Pedido());
         EstadoPedido enviado=estadoPedidoRepository.pedidoEnviado();
         pedido.setEstadoPedido(enviado);
+        this.notificar(pedido.getUsuario(), "ha cancelado su pedido");
     }
 
+    @Override
+    public void notificar(Usuario u2, String accion) {
+        for (Usuario u:service.buscarUsuariosByRol("admin")) {
+            service.actualizar(u, u2, accion);
+        }
+    }
 }
 
