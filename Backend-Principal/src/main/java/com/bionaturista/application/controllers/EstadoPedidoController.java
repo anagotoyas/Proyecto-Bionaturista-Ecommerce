@@ -146,7 +146,7 @@ public class EstadoPedidoController {
     }
 
     @GetMapping(value="/listar", produces = {"application/json"})
-    public ResponseEntity<RespuestaEstadoPedido> listarCompuestos() {
+    public ResponseEntity<RespuestaEstadoPedido> listarEstado() {
 
         RespuestaEstadoPedido respuestaEstadoPedido = new RespuestaEstadoPedido();
 

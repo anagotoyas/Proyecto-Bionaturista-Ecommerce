@@ -1,5 +1,6 @@
 package com.bionaturista.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Rol {
     @Column(name = "nombre_usuario", nullable = false)
     private String nombreRol;
 
+    @JsonIgnore
     @OneToMany(mappedBy ="rol")
     private List<Usuario> usuario;
 
