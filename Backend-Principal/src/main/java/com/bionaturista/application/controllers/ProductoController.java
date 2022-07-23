@@ -169,6 +169,40 @@ public class ProductoController {
 
     }
 
+    @GetMapping(value="/buscarPorNombre", produces = {"application/json"})
+    public ResponseEntity<RespuestaProducto> buscarProductosPorNombre(String nombreProducto) {
+
+        RespuestaProducto res= new RespuestaProducto();
+        System.out.println(res);
+
+        try {
+
+            res.setSatisfactorio(true);
+            res.setCodigo("101");
+            res.setMensaje("Productos encontrados");
+
+            List<Producto> lista = productoService.buscarPorNombre(nombreProducto);
+
+            res.setData(lista);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+
+        }
+        catch(InterruptedException e){
+            res.setSatisfactorio(false);
+            res.setCodigo("109");
+            res.setMensaje("Lloro" + e.getMessage());
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        catch(Exception e){
+
+            res.setSatisfactorio(false);
+            res.setCodigo("109");
+            res.setMensaje(e.getMessage());
+            return new ResponseEntity<>(res,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
     @GetMapping(value = "/buscar/{idProducto}", produces = {"application/json"})
     public ResponseEntity<RespuestaProductoEntity> getProductoPorId(@PathVariable("idProducto") Integer idProducto){
 

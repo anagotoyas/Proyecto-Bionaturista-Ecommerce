@@ -16,6 +16,7 @@ import java.util.Set;
 
 @Service
 public class PedidoServiceImpl implements PedidoService, Publisher {
+    @Autowired
     private final PedidoRepository pedidoRepository;
     @Autowired
     private InfoEnvioRepository infoEnvioRepository;
@@ -34,11 +35,14 @@ public class PedidoServiceImpl implements PedidoService, Publisher {
 
     @Override
     public Pedido pagarPedido(Pedido pedido) throws InterruptedException {
+
         //Asigno el montoPago el costoEnvío para de ahí sumarle los productos jeje
         pedido.setMontoPago(pedido.getCostoEnvio());
         //Obtengo el Usuario mediante su idUsuario para obtener su carrito pex
         Integer idsazo=pedido.getUsuario().getIdUsuario();
-        Usuario usuarioFinal=usuarioRepository.getById(idsazo);
+
+        Usuario usuarioFinal=pedido.getUsuario();
+
         //Le sumamos al montoPago los precios de cada product y lo guardamoss
         pedido.setMontoPago(obtenerMontoTotal(usuarioFinal, pedido));
         //Obtiene el subTotal
@@ -57,7 +61,6 @@ public class PedidoServiceImpl implements PedidoService, Publisher {
 
         this.notificar(pedido.getUsuario(), "ha pagado su pedido");
 
-        usuarioRepository.save(usuarioFinal);
         //Y guarda el pedido as it should :)
         return pedidoRepository.save(pedido);
     }
@@ -66,6 +69,7 @@ public class PedidoServiceImpl implements PedidoService, Publisher {
     public float obtenerMontoTotal(Usuario usuario, Pedido pedido) throws InterruptedException {
         Set<Producto> productos = usuario.getCarritoCompras();
         float total=pedido.getMontoPago();
+        float montoEnvio= pedido.getCostoEnvio();
         for (Producto producto : productos){
             //Suma de precios
             total+=producto.getPrecioProducto();
@@ -82,15 +86,15 @@ public class PedidoServiceImpl implements PedidoService, Publisher {
             //Guardamos el Producto con menos stockazo
             productoService.modificarProducto(productoDto);
         }
+        total+=montoEnvio;
         return total;
     }
 
     @Override
     public float obtenerSubtotal(Pedido pedido) throws InterruptedException {
-        float subtotal=0f;
+        float subtotal;
         float montoCompleto=pedido.getMontoPago();
-        float montoEnvio= pedido.getCostoEnvio();
-        subtotal=montoCompleto-montoEnvio;
+        subtotal = montoCompleto;
         return subtotal;
     }
 

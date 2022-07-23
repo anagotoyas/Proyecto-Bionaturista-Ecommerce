@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3cfea8c0-9ab6-49b3-8cc6-c74ced2b10dd",
-		"name": "Bionaturista",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "a8111c5c-31c2-4069-a5cd-53820b8a6cfe",
+		"name": "Bionaturista Principal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17951869"
 	},
 	"item": [
 		{
@@ -63,7 +64,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombreUsuario\": \"Luz Maria\",\r\n    \"contrasenaUsuario\": \"light123\",\r\n    \"correoUsuario\": \"luzmarialegend@gmail.com\",\r\n    \"direccionUsuario\": \"La Vida es Dura Manzana 3\",\r\n    \"rol\" : {\r\n        \"idRol\" : 1\r\n    }\r\n\r\n}",
+							"raw": "{\r\n    \"nombreUsuario\": \"LindoButBruto\",\r\n    \"contrasenaUsuario\": \"light123\",\r\n    \"correoUsuario\": \"aaaaaad@gmail.com\",\r\n    \"direccionUsuario\": \"La Vida es Dura Manzana 3\",\r\n    \"rol\" : {\r\n        \"idRol\" : 2\r\n    }\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,137 +117,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "eliminarProductoAlCarrito",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8096/bionaturista//usuarios/1/carrito/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8096",
-							"path": [
-								"bionaturista",
-								"",
-								"usuarios",
-								"1",
-								"carrito",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "logIn",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombreUsuario\": \"JosecitoVB\",\n    \"contrasenaUsuario\":\"josecito\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8096/bionaturista//usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8096",
-							"path": [
-								"bionaturista",
-								"",
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "agregarProductoAlCarrito",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8096/bionaturista//usuarios/1/carrito/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8096",
-							"path": [
-								"bionaturista",
-								"",
-								"usuarios",
-								"1",
-								"carrito",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "obtenerCarritoPorIdUsuario",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8096/bionaturista//usuarios/1/carrito",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8096",
-							"path": [
-								"bionaturista",
-								"",
-								"usuarios",
-								"1",
-								"carrito"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -260,7 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombreCategoria\": \"Aceites\"\r\n}",
+							"raw": "{\r\n    \"nombreCategoria\": \"Polvos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -268,12 +138,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/categorias",
+							"raw": "{{base_url}}/categorias/crear",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"categorias"
+								"categorias",
+								"crear"
 							]
 						}
 					},
@@ -286,7 +157,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idCategoria\": 1,\r\n    \"nombreCategoria\": \"Capsulas\"\r\n}",
+							"raw": "{\r\n    \"idCategoria\": 5,\r\n    \"nombreCategoria\": \"Juguitos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -294,12 +165,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/categorias",
+							"raw": "{{base_url}}/categorias/editar",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"categorias"
+								"categorias",
+								"editar"
 							]
 						}
 					},
@@ -311,13 +183,51 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/categorias/1",
+							"raw": "{{base_url}}/categorias/eliminar/4",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"categorias",
-								"1"
+								"eliminar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Categorias API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categorias/listar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categorias",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Categoria por ID Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categorias/buscar/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categorias",
+								"buscar",
+								"2"
 							]
 						}
 					},
@@ -339,24 +249,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Obtener Categoria por ID Categoria",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/categorias/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"categorias",
-								"2"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -370,7 +262,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombreCompuesto\": \"Vitamina A\"\r\n}",
+							"raw": "{\r\n    \"nombreCompuesto\": \"Vitamina C\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -378,12 +270,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compuestos",
+							"raw": "{{base_url}}/compuestos/crear",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"compuestos"
+								"compuestos",
+								"crear"
 							]
 						}
 					},
@@ -396,7 +289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idCompuesto\": 1,\r\n    \"nombreCompuesto\": \"Vitamina B\"\r\n}",
+							"raw": "{\r\n    \"idCompuesto\": 3,\r\n    \"nombreCompuesto\": \"Vitamina Felis\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -404,12 +297,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compuestos",
+							"raw": "{{base_url}}/compuestos/editar",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"compuestos"
+								"compuestos",
+								"editar"
 							]
 						}
 					},
@@ -419,6 +313,43 @@
 					"name": "Eliminar Compuesto",
 					"request": {
 						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/compuestos/eliminar/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compuestos",
+								"eliminar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Compuestos API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/compuestos/listar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compuestos",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Compuesto por ID Compuesto",
+					"request": {
+						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/compuestos/1",
@@ -449,24 +380,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Obtener Compuesto por ID Compuesto",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/compuestos/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"compuestos",
-								"1"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -480,7 +393,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombreP\":\"Aceite Primor Gold\",\r\n    \"imagenP\":\"oil.jpg\",\r\n    \"descripcionP\":\"Tus comidas conmigo salen doradas\",\r\n    \"precioP\":10,\r\n    \"stockP\":30,\r\n    \"categoria\": {\r\n        \"idCategoria\":1\r\n    },\r\n    \"compuesto\":{\r\n        \"idCompuesto\":1\r\n    }\r\n\r\n    \r\n    \r\n\r\n\r\n\r\n}",
+							"raw": "{\r\n    \"nombreProducto\":\"Aceite Primor Gold\",\r\n    \"imagenProducto\":\"oil.jpg\",\r\n    \"descripcionProducto\":\"Tus comidas conmigo salen doradas\",\r\n    \"precioProducto\":10,\r\n    \"stockProducto\":30,\r\n    \"categoria\": {\r\n        \"idCategoria\":1\r\n    },\r\n    \"compuesto\":{\r\n        \"idCompuesto\":1\r\n    }\r\n\r\n    \r\n    \r\n\r\n\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -488,12 +401,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/productos",
+							"raw": "{{base_url}}/productos/crear",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"productos"
+								"productos",
+								"crear"
 							]
 						}
 					},
@@ -505,12 +419,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/productos",
+							"raw": "{{base_url}}/productos/listar",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"productos"
+								"productos",
+								"listar"
 							]
 						}
 					},
@@ -540,7 +455,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{base_url}}/productos/buscarPorNombre?nombreProducto=gold",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"buscarPorNombre"
+							],
+							"query": [
+								{
+									"key": "nombreProducto",
+									"value": "gold"
+								}
+							]
 						}
 					},
 					"response": []
@@ -578,13 +506,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base_url}}/usuarios/1/carrito/1",
+							"raw": "{{base_url}}/usuarios/5/carrito/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"usuarios",
-								"1",
+								"5",
 								"carrito",
 								"1"
 							]
@@ -598,13 +526,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/usuarios/1/carrito",
+							"raw": "{{base_url}}/usuarios/4/carrito",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"usuarios",
-								"1",
+								"4",
 								"carrito"
 							]
 						}
@@ -631,12 +559,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/estados",
+							"raw": "{{base_url}}/estados/crear",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"estados"
+								"estados",
+								"crear"
 							]
 						}
 					},
@@ -733,7 +662,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuario\": {\r\n        \"idUsuario\": 1\r\n    },\r\n    \"metodoPago\":\"queti\",\r\n    \"costoEnvio\":7,\r\n    \"estadoPedido\":{\r\n        \"idEstado\":1\r\n    }\r\n}",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"idUsuario\": 5\r\n    },\r\n    \"infoEnvio\": {\r\n        \"nombreContactoEnvio\": \"Taehyung\",\r\n        \"numTelefonoEnvio\": 123456789,\r\n        \"direccionEnvio\": \"Eres lindo pero brutooo\",\r\n        \"apartamentoEnvio\": \"aaaa\",\r\n        \"codigoPostal\": 12345\r\n    },\r\n    \"metodoPago\":\"queti\",\r\n    \"costoEnvio\":7,\r\n    \"estadoPedido\":{\r\n        \"idEstado\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -741,12 +670,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/pedidos",
+							"raw": "{{base_url}}/pedidos/pagar",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"pedidos"
+								"pedidos",
+								"pagar"
 							]
 						}
 					},
@@ -839,7 +769,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:8090/bionaturista",
+			"value": "http://localhost:8096/bionaturista",
 			"type": "string"
 		}
 	]

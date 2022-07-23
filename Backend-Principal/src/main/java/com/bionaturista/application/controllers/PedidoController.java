@@ -4,15 +4,20 @@ import com.bionaturista.application.dto.pedido.RespuestaPedido;
 import com.bionaturista.application.dto.pedido.RespuestaPedidoEntity;
 import com.bionaturista.application.dto.respuestas.Respuesta;
 import com.bionaturista.domain.entities.Pedido;
+import com.bionaturista.domain.entities.Producto;
 import com.bionaturista.domain.entities.Usuario;
 import com.bionaturista.domain.repositories.UsuarioRepository;
 import com.bionaturista.domain.services.PedidoService;
+import com.bionaturista.domain.services.UsuarioService;
 import com.bionaturista.utils.WrapperResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpServerErrorException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,8 +28,12 @@ import java.util.Set;
 public class PedidoController {
     private final PedidoService pedidoService;
 
+    protected final Log logger = LogFactory.getLog(getClass());
+
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Value("Pedido Pagado.")
     private String msgPedidoPagado;
@@ -54,12 +63,12 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
-    @PostMapping(value = "", produces = {"application/json"}, consumes = {"application/json"})
+    @PostMapping(value = "/pagar", produces = {"application/json"}, consumes = {"application/json"})
     public ResponseEntity<RespuestaPedidoEntity> pagarPedido(@Valid @RequestBody Pedido pedido){
         RespuestaPedidoEntity res = new RespuestaPedidoEntity();
-        Pedido pedidoNull=null;
         Integer idUsuario=pedido.getUsuario().getIdUsuario();
-        Usuario usuario=usuarioRepository.getById(idUsuario);
+
+        Usuario usuario=usuarioService.obtenerUsuarioPorIdUsuario(idUsuario);
 
         try{
             res.setSatisfactorio(true);
@@ -72,6 +81,9 @@ public class PedidoController {
                 res.setMensaje(msgPedidoPagado);
                 Pedido pedidoNew = pedidoService.pagarPedido(pedido);
                 res.setData(pedidoNew);
+                Set<Producto> nuevoCarrito = null;
+                usuario.setCarritoCompras(nuevoCarrito);
+                usuarioRepository.save(usuario);
             }
 
             if (res.isSatisfactorio()==true){
@@ -168,7 +180,6 @@ public class PedidoController {
             List<Pedido> pedidos = pedidoService.listarPedido();
 
             res.setData(pedidos);
-            System.out.println(res);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (InterruptedException e){
             res.setSatisfactorio(false);

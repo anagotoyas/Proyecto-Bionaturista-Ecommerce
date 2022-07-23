@@ -45,25 +45,21 @@ public class ProductoServiceImpl implements ProductoService {
         producty.setCategoria(producto.getCategoria());
         producty.setCompuesto(producto.getCompuesto());
 
+        Producto productnew = productoRepository.save(producty);
 
+        System.out.println(productnew);
 
-        Producto productynew = productoRepository.save(producty);
-
-
-
-        System.out.println(productynew);
-
-        HttpEntity<Producto> entity = new HttpEntity<>(productynew);
+        HttpEntity<Producto> entity = new HttpEntity<>(productnew);
         RestTemplate restTemplate=new RestTemplate();
 
         ResponseEntity<RespuestaProductoEntity> response = restTemplate.exchange(serviceProducto, HttpMethod.POST, entity,
                 new ParameterizedTypeReference<RespuestaProductoEntity>() {
                 });
-        System.out.println(productynew);
+        System.out.println(productnew);
         RespuestaProductoEntity respuesta = new RespuestaProductoEntity();
 
         if (response.getStatusCode() == HttpStatus.CREATED) {
-            return productynew;
+            return productnew;
         }
 
         else {
@@ -205,7 +201,8 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public List<Producto> buscarPorNombre(String nombreP) throws InterruptedException {
-        return null;
+    public List<Producto> buscarPorNombre(String nombreProducto) throws InterruptedException {
+        List<Producto> productoN = productoRepository.buscarProductoPorNombre(nombreProducto);
+        return productoN;
     }
 }

@@ -78,6 +78,7 @@ public class UsuarioServiceImpl implements UsuarioService, Subscriber {
         return usuarioRepository.findById(idUsuario).orElse(new Usuario());
     }
 
+
     @Override
     public void agregarProductoAlCarrito(int idUsuario, int idProducto) throws InterruptedException{
 
@@ -94,6 +95,8 @@ public class UsuarioServiceImpl implements UsuarioService, Subscriber {
             Producto productoEntidad = this.productoRepository.findById(producto.getIdProducto()).orElse(new Producto());
             if(producto.getStockProducto()>0){
                 usuario.getCarritoCompras().add(productoEntidad);
+
+                usuarioRepository.save(usuario);
             }
         }else{
             logger.error("La respuesta del servicio no se ha procesado con exito ErrorCode:" + response.getStatusCode());

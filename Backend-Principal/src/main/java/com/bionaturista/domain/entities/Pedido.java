@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Table(name = "pedidos")
 @Getter
 @Setter
+@ToString
 public class Pedido {
 
     @Id
